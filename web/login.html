@@ -1,18 +1,68 @@
 <!DOCTYPE html>
 <html>
+<head>
   <title>
-     <h1>Welcome to HotSpot</h1>
+     Welcome to HotSpot
   </title>
-  <body>
-<script>
-	var userLogin=prompt("Enter your user name: ","Print here");
-        var password = prompt("Enter your password: ","Print here");
+</head>  
+<body>
+    <body background= "http://cdn.frontpagemag.com/wp-content/uploads/2013/07/New-York-City-Skyline.jpg">
 
-	//connect to a db to check the ish
+    <b><center><font size ="8" color="Red">Welcome to HotSpot</font></center></b>
+
+    <center>
+    <button onclick = "background-color:yellow""newUser()"><font size = "8">New User</font></button>
+    <button style="background-color: yellow" onclick = "existingUser()">Existing User</font></button>
+    </center>
+
+<script>
+	var userLogin;
+        var password;
+
+        var existingUser = function(){
+            userLogin = prompt("Enter your user name: ","Print here");
+            password = prompt("Enter your password: ","Print here");
+	}
+
+        var newUser = function(){
+	    //Boolean variable to check if the username is taken
+	    var nameTaken = false;
+
+	    //sample name for testing
+	    var sampleName = "A";
+
+	//create the new user and check for duplication    
+	do{
+	    userLogin = prompt("Enter your desired user name: ", "Print here!");
+
+       	    //if dupe, alert user that the name was taken and try again
+ 	    if (userLogin === sampleName){
+		alert("NAME TAKEN");
+		nameTaken=true;
+
+	    //if the username was not taken
+	    }else{
+		nameTaken=false;
+	    }
+	    //this is a querry seach in the database and if its not there, create the new user. 
+	    
+	    }while(nameTaken===true);
+
+	    password = prompt("Enter your password:","Print here!");
+
+	
+            //ENTER USER INFORMATION INTO DB
+
+	}
+
+
 	
 
 
 	
 //fns which loads things in the background, fns which deal with buttons, fns which 
 //take in text for user/password, fns that true or false login info,fn for new user	
-<script/>
+</script>
+</body background>
+</body>
+</html>
