@@ -6,22 +6,31 @@
   </title>
 </head>  
 <body>
-    <body background= "http://cdn.frontpagemag.com/wp-content/uploads/2013/07/New-York-City-Skyline.jpg">
+    <body style ="background: url(http://cdn.frontpagemag.com/wp-content/uploads/2013/07/New-York-City-Skyline.jpg) no-repeat center;" > 
+
+	
 
     <b><center><font size ="32" color="Red">Welcome to HotSpot</font></center></b>
 
     <center>
-    <button style ="background-image: url(button.png) "height:151;width:61"" onclick = "newUser()">New User</button>
-    <button style ="background-image: url(button.png)" onclick = "existingUser()"><font size = "5">Existing User</font></button>
+    <button style ="background-image: url(button.png); border:0; width:151;height:61" onclick = "newUser()"><font size = "5">New User</button>
+    <button style ="background-image: url(button.png); border:0; width:151;height:61" onclick = "existingUser()"><font size = "5">To Login</font></button>
     </center>
 
 <script>
+   
 	var userLogin;
         var password;
 
         var existingUser = function(){
-            userLogin = prompt("Enter your user name: ","Print here");
-            password = prompt("Enter your password: ","Print here");
+            userLogin = prompt("Enter your user name: ", "Print here!");
+			if(userLogin == null){
+				return;
+			}
+            password = prompt("Enter your password: ", "Print here!");
+			if(password == null){
+				return;
+			}
 	}
 
         var newUser = function(){
@@ -34,6 +43,9 @@
 	//create the new user and check for duplication    
 	do{
 	    userLogin = prompt("Enter your desired user name: ", "Print here!");
+		if(userLogin == null){
+				return;
+			}
 
        	    //if dupe, alert user that the name was taken and try again
  	    if (userLogin === sampleName){
@@ -49,6 +61,10 @@
 	    }while(nameTaken===true);
 
 	    password = prompt("Enter your password:","Print here!");
+		if(password == null){
+		        //remove the name from the database
+				return;
+			}
 
 	
             //ENTER USER INFORMATION INTO DB
