@@ -11,6 +11,16 @@
 			if(password == null){
 				return;
 			}
+
+            $.post('http://centi.cs.dal.ca:8001/user/' + userLogin, {
+                password: password
+            }, function(data) {
+                console.log(data);
+            }).fail(function(e) {
+                if (e.status == 404 || e.status == 403) {
+                    alert('Invalid user/pw');
+                }
+            });
 	}
 
         var newUser = function(){
@@ -48,6 +58,16 @@
 
 	
             //ENTER USER INFORMATION INTO DB
+            $.post('http://centi.cs.dal.ca:8001/user', {
+		username: userLogin,
+		password: password
+            }, function(data) {
+		console.log(data);
+            }).fail(function(e) {
+               if (e.status == 403) {
+                   alert("user already exists");
+               }
+            });
 
 	}
 
