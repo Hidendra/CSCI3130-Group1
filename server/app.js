@@ -1,40 +1,67 @@
 var express = require('express');
+var sha1 = require('sha1');
 var app = express();
+app.use(express.bodyParser());
 
 // connect to Mongo
 var db = require('monk')('127.0.0.1:27017/group1');
 var testcollection = db.get('testcollection');
+var users = db.get('users');
 
-app.get('/', function(req, res) {
-    res.send('Hello World');
-});
-
-app.get('/test/:x', function(req, res) {
-    res.send('test: ' + req.params.x);
-});
-
-app.get('/find', function(req, res) {
-    testcollection.find({}, function(err, docs) {
-        res.json(docs);
+// Get a listing of all users
+app.get('/user', function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    users.find({}, function(err, docs) {
+       res.json(docs);
     });
 });
 
-app.get('/insert/:name', function(req, res) {
-    testcollection.insert({
-        name: req.params.name
+// Verify a user's credentials
+app.post('/user/:username', function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    users.find({
+        username: req.params.username
+    }, function(err, docs) {
+        if (docs.length == 0) {
+            res.send(404);
+        } else {
+            var user = docs[0];
+            if (sha1(req.body.password) == user.password) {
+                res.json(user);
+            } else {
+                res.send(403);
+            }
+        }
     });
-
-    console.log("Inserted: " + req.params.name);
-    res.json({status: 'ok'});
 });
 
-app.get('/remove/:name', function(req, res) {
-    testcollection.remove({
-        name: req.params.name
-    });
+// Create a user
+app.post('/user', function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
-    console.log("Removed: " + req.params.name);
-    res.json({status: 'ok'});
+    var username = req.body.username;
+
+    // check that the users did not
+    users.find({
+        username: username
+    }, function(err, docs) {
+        if (docs.length != 0) {
+            res.send(403);
+            return;
+        }
+
+        users.insert({
+            username: username,
+            password: sha1(req.body.password)
+        });
+
+        // output the uesr back to the client
+        users.find({
+           username: username
+        }, function(err, docs) {
+           res.json(docs);
+        });
+    });
 });
 
 app.listen(8001);
