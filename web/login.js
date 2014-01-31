@@ -1,14 +1,16 @@
 var existingUser = function () {
-	userLogin = prompt('Enter your user name:');
-	if (userLogin == null) {
-		return;
-	}
-	password = prompt('Enter your password:');
-	if (password == null) {
-		return;
+	var username = null;
+	var password = null;
+
+	while (username == null) {
+		username = prompt('Enter your username:');
 	}
 
-	$.post('http://centi.cs.dal.ca:8001/user/' + userLogin, {
+	while (password == null) {
+		password = prompt('Enter your password:');
+	}
+
+	$.post('http://centi.cs.dal.ca:8001/user/' + username, {
 		password: password
 	},function (data) {
 		console.log(data);
@@ -21,12 +23,12 @@ var existingUser = function () {
 }
 
 var newUser = function () {
-	var userLogin = null;
+	var username = null;
 	var password = null;
 
 	//create the new user and check for duplication
-	while (userLogin == null) {
-		userLogin = prompt('Enter your desired user name:');
+	while (username == null) {
+		username = prompt('Enter your desired username:');
 	}
 
 	while (password == null) {
@@ -34,7 +36,7 @@ var newUser = function () {
 	}
 
 	$.post('http://centi.cs.dal.ca:8001/user', {
-		username: userLogin,
+		username: username,
 		password: password
 	},function (data) {
 		console.log(data);
@@ -44,7 +46,6 @@ var newUser = function () {
 				alert('user already exists');
 			}
 		});
-
 }
 
 
