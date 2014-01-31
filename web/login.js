@@ -1,12 +1,9 @@
-var userLogin;
-var password;
-
 var existingUser = function () {
-	userLogin = prompt("Enter your user name: ", "Print here!");
+	userLogin = prompt('Enter your user name:');
 	if (userLogin == null) {
 		return;
 	}
-	password = prompt("Enter your password: ", "Print here!");
+	password = prompt('Enter your password:');
 	if (password == null) {
 		return;
 	}
@@ -15,6 +12,7 @@ var existingUser = function () {
 		password: password
 	},function (data) {
 		console.log(data);
+		alert('Welcome!');
 	}).fail(function (e) {
 			if (e.status == 404 || e.status == 403) {
 				alert('Invalid user/pw');
@@ -23,48 +21,27 @@ var existingUser = function () {
 }
 
 var newUser = function () {
-	//Boolean variable to check if the username is taken
-	var nameTaken = false;
-
-	//sample name for testing
-	var sampleName = "A";
+	var userLogin = null;
+	var password = null;
 
 	//create the new user and check for duplication
-	do {
-		userLogin = prompt("Enter your desired user name: ", "Print here!");
-		if (userLogin == null) {
-			return;
-		}
-
-		//if dupe, alert user that the name was taken and try again
-		if (userLogin === sampleName) {
-			alert("NAME TAKEN");
-			nameTaken = true;
-
-			//if the username was not taken
-		} else {
-			nameTaken = false;
-		}
-		//this is a querry seach in the database and if its not there, create the new user.
-
-	} while (nameTaken === true);
-
-	password = prompt("Enter your password:", "Print here!");
-	if (password == null) {
-		//remove the name from the database
-		return;
+	while (userLogin == null) {
+		userLogin = prompt('Enter your desired user name:');
 	}
 
+	while (password == null) {
+		password = prompt('Enter your password:');
+	}
 
-	//ENTER USER INFORMATION INTO DB
 	$.post('http://centi.cs.dal.ca:8001/user', {
 		username: userLogin,
 		password: password
 	},function (data) {
 		console.log(data);
+		alert('Welcome!');
 	}).fail(function (e) {
 			if (e.status == 403) {
-				alert("user already exists");
+				alert('user already exists');
 			}
 		});
 
