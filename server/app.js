@@ -91,8 +91,8 @@ app.post('/position', function (req, res) {
 
 	points.insert({
 		userid: userid,
-		lat: parseDouble(req.body.lat),
-		lon: parseDouble(req.body.lon),
+		lat: parseFloat(req.body.lat),
+		lon: parseFloat(req.body.lon),
 		time: new Date().getTime()/1000
 	});
 
