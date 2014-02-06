@@ -8,6 +8,9 @@ button{
 	font-size: 24px;
 }
 
+.hidden { display: none; }
+
+
 #title{
 	font-size: 48px;
 	color: red;

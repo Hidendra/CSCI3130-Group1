@@ -6,6 +6,7 @@ app.use(express.bodyParser());
 // connect to Mongo
 var db = require('monk')('127.0.0.1:27017/group1');
 var users = db.get('users');
+var points = db.get('points');
 
 // Session handler
 var session = require('./session')(db);
@@ -78,6 +79,25 @@ app.post('/user', function (req, res) {
 		});
 	});
 });
+
+app.post('/position', function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+
+	var userid = session.findSession(req.body.key);
+	if (userid === null){
+		res.send(403);
+		return;
+	}
+
+	points.insert({
+		userid: userid,
+		lat: parseDouble(req.body.lat),
+		lon: parseDouble(req.body.lon),
+		time: new Date().getTime()/1000
+	});
+
+
+})
 
 app.listen(8001);
 
