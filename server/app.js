@@ -7,6 +7,9 @@ app.use(express.bodyParser());
 var db = require('monk')('127.0.0.1:27017/group1');
 var users = db.get('users');
 
+// Session handler
+var session = require('./session')(db);
+
 // Get a listing of all users
 app.get('/user', function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,7 +18,7 @@ app.get('/user', function (req, res) {
 	});
 });
 
-// Verify a user's credentials
+// Login a user
 app.post('/user/:username', function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	users.find({
@@ -25,8 +28,14 @@ app.post('/user/:username', function (req, res) {
 			res.send(404);
 		} else {
 			var user = docs[0];
+			var key = session.createSession(user._id);
+
+			console.log('User ' + user.username + ' authenticated. Session id: ' + key);
+
 			if (sha1(req.body.password) == user.password) {
-				res.json(user);
+				res.json({
+					key: key
+				});
 			} else {
 				res.send(403);
 			}
@@ -58,7 +67,14 @@ app.post('/user', function (req, res) {
 		users.find({
 			username: username
 		}, function (err, docs) {
-			res.json(docs);
+			var user = docs[0];
+			var key = session.createSession(user._id);
+
+			console.log('User ' + user.username + ' authenticated. Session id: ' + key);
+
+			res.json({
+				key: key
+			});
 		});
 	});
 });

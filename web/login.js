@@ -1,3 +1,5 @@
+var apiUrl = 'http://centi.cs.dal.ca:8001';
+
 var existingUser = function () {
 	var username = null;
 	var password = null;
@@ -10,7 +12,7 @@ var existingUser = function () {
 		password = prompt('Enter your password:');
 	}
 
-	$.post('http://centi.cs.dal.ca:8001/user/' + username, {
+	$.post(apiUrl + '/user/' + username, {
 		password: password
 	},function (data) {
 		console.log(data);
@@ -35,7 +37,7 @@ var newUser = function () {
 		password = prompt('Enter your password:');
 	}
 
-	$.post('http://centi.cs.dal.ca:8001/user', {
+	$.post(apiUrl + '/user', {
 		username: username,
 		password: password
 	},function (data) {
