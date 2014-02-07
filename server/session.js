@@ -5,14 +5,14 @@ module.exports = function (db) {
 
 	return {
 		// Finds a session and returns the user it is for, otherwise null.
-		findSession: function (sessionKey) {
-			sessions.find({
+		findSession: function (sessionKey, callback) {
+			sessions.findOne({
 				key: sessionKey
 			}, function (err, docs) {
 				if (docs.length == 0) {
-					return null;
+					callback(null);
 				} else {
-					return docs.userid;
+					callback(docs.userid);
 				}
 			});
 		},

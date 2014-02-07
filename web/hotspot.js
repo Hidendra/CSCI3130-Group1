@@ -1,4 +1,5 @@
 var apiUrl = 'http://centi.cs.dal.ca:8001';
+// var apiUrl = 'http://10.10.1.7:8001';
 var sessionkey = null;
 
 var existingUser = function () {
@@ -19,20 +20,20 @@ var existingUser = function () {
 		completeLogin(data);
 
 	}).fail(function (e) {
-			if (e.status == 404 || e.status == 403) {
-				alert('Invalid user/pw');
-			}
-		});
+		if (e.status == 404 || e.status == 403) {
+			alert('Invalid user/pw');
+		}
+	});
 }
 
 var completeLogin = function (data) {
-		sessionkey = data.key;
-		console.log(data);
-		alert('Welcome!');
-		$("#signup").hide();
-		$("#signin").hide();
-     $('#map').removeClass('hidden');
- 
+	sessionkey = data.key;
+	console.log(data);
+	alert('Welcome!');
+	$("#signup").hide();
+	$("#signin").hide();
+	$('#map').removeClass('hidden');
+
 }
 
 var newUser = function () {
@@ -55,30 +56,29 @@ var newUser = function () {
 		completeLogin(data);
 
 	}).fail(function (e) {
-			if (e.status == 403) {
-				alert('user already exists');
-			}
-		});
+		if (e.status == 403) {
+			alert('user already exists');
+		}
+	});
 }
 
-var watchLocation = function () { 
+var watchLocation = function () {
 	navigator.geolocation.watchPosition(function (position) {
-		console.log(position);
-		$.post(apiUrl +'/position', {
-			key: sessionkey,
-			lat: position.coords.latitude,
-			lon: position.coords.longitude
+			console.log(position);
+			$.post(apiUrl + '/position', {
+				key: sessionkey,
+				lat: position.coords.latitude,
+				lon: position.coords.longitude
+			});
+		},
+		function (positionError) {
+			$("#error").append("Error: " + positionError.message + "<br />");
+		},
+		{
+			enableHighAccuracy: true,
+			timeout: 10 * 1000 // 10 seconds
 		});
-	    },
-	    function (positionError) {
-	        $("#error").append("Error: " + positionError.message + "<br />");
-	    },
-	    {
-	        enableHighAccuracy: true,
-	        timeout: 10 * 1000 // 10 seconds
-	    });
 }
-
 
 
 //fns which loads things in the background, fns which deal with buttons, fns which

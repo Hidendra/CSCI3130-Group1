@@ -83,21 +83,21 @@ app.post('/user', function (req, res) {
 app.post('/position', function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 
-	var userid = session.findSession(req.body.key);
-	if (userid === null){
-		res.send(403);
-		return;
-	}
+	session.findSession(req.body.key, function(userid) {
+		if (userid == null){
+			res.send(403);
+			return;
+		}
 
-	points.insert({
-		userid: userid,
-		lat: parseFloat(req.body.lat),
-		lon: parseFloat(req.body.lon),
-		time: new Date().getTime()/1000
+		points.insert({
+			userid: userid,
+			lat: parseFloat(req.body.lat),
+			lon: parseFloat(req.body.lon),
+			time: parseInt(new Date().getTime() / 1000)
+		});
 	});
 
-
-})
+});
 
 app.listen(8001);
 
