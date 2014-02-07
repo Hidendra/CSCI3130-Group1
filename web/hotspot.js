@@ -1,4 +1,5 @@
 var apiUrl = 'http://centi.cs.dal.ca:8001';
+// var apiUrl = 'http://10.10.1.7:8001';
 var sessionkey = null;
 
 var existingUser = function () {
@@ -51,6 +52,7 @@ var existingUser = function () {
 		completeLogin(data);
 
 	}).fail(function (e) {
+<<<<<<< HEAD
 			if (e.status == 404 || e.status == 403){
 				if((username != null) && (password!= null)) {
 				    alert('Invalid user/pw');
@@ -58,6 +60,13 @@ var existingUser = function () {
 			}
 		});
 }
+=======
+		if (e.status == 404 || e.status == 403) {
+			alert('Invalid user/pw');
+		}
+	});
+};
+>>>>>>> 9ff2171f43c634adfe29109680cc1a2b43d89b5d
 
 var completeLogin = function (data) {
 	sessionkey = data.key;
@@ -65,8 +74,13 @@ var completeLogin = function (data) {
 	alert('Welcome!');
 	$("#signup").hide();
 	$("#signin").hide();
+<<<<<<< HEAD
     $('#map').removeClass('hidden');
 }
+=======
+	$('#map').removeClass('hidden');
+};
+>>>>>>> 9ff2171f43c634adfe29109680cc1a2b43d89b5d
 
 var newUser = function () {
 	var username = "";
@@ -109,6 +123,7 @@ var newUser = function () {
 		completeLogin(data);
 
 	}).fail(function (e) {
+<<<<<<< HEAD
 			if (e.status == 403) {
 				if((username != null) && (password!= null)){
 				    alert('user already exists');
@@ -116,25 +131,31 @@ var newUser = function () {
 			}
 		});
 }
+=======
+		if (e.status == 403) {
+			alert('user already exists');
+		}
+	});
+};
+>>>>>>> 9ff2171f43c634adfe29109680cc1a2b43d89b5d
 
-var watchLocation = function () { 
+var watchLocation = function () {
 	navigator.geolocation.watchPosition(function (position) {
-		console.log(position);
-		$.post(apiUrl +'/position', {
-			key: sessionkey,
-			lat: position.coords.latitude,
-			lon: position.coords.longitude
+			console.log(position);
+			$.post(apiUrl + '/position', {
+				key: sessionkey,
+				lat: position.coords.latitude,
+				lon: position.coords.longitude
+			});
+		},
+		function (positionError) {
+			$("#error").append("Error: " + positionError.message + "<br />");
+		},
+		{
+			enableHighAccuracy: true,
+			timeout: 10 * 1000 // 10 seconds
 		});
-	    },
-	    function (positionError) {
-	        $("#error").append("Error: " + positionError.message + "<br />");
-	    },
-	    {
-	        enableHighAccuracy: true,
-	        timeout: 10 * 1000 // 10 seconds
-	    });
-}
-
+};
 
 
 //fns which loads things in the background,  fns which
