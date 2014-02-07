@@ -52,21 +52,15 @@ var existingUser = function () {
 		completeLogin(data);
 
 	}).fail(function (e) {
-<<<<<<< HEAD
+
 			if (e.status == 404 || e.status == 403){
 				if((username != null) && (password!= null)) {
 				    alert('Invalid user/pw');
 				}    
 			}
 		});
-}
-=======
-		if (e.status == 404 || e.status == 403) {
-			alert('Invalid user/pw');
-		}
-	});
-};
->>>>>>> 9ff2171f43c634adfe29109680cc1a2b43d89b5d
+//}
+
 
 var completeLogin = function (data) {
 	sessionkey = data.key;
@@ -74,13 +68,10 @@ var completeLogin = function (data) {
 	alert('Welcome!');
 	$("#signup").hide();
 	$("#signin").hide();
-<<<<<<< HEAD
-    $('#map').removeClass('hidden');
-}
-=======
+
 	$('#map').removeClass('hidden');
 };
->>>>>>> 9ff2171f43c634adfe29109680cc1a2b43d89b5d
+
 
 var newUser = function () {
 	var username = "";
@@ -131,13 +122,7 @@ var newUser = function () {
 			}
 		});
 }
-=======
-		if (e.status == 403) {
-			alert('user already exists');
-		}
-	});
-};
->>>>>>> 9ff2171f43c634adfe29109680cc1a2b43d89b5d
+
 
 var watchLocation = function () {
 	navigator.geolocation.watchPosition(function (position) {
