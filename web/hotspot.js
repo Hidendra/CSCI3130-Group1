@@ -52,15 +52,13 @@ var existingUser = function () {
 		completeLogin(data);
 
 	}).fail(function (e) {
-
 			if (e.status == 404 || e.status == 403){
 				if((username != null) && (password!= null)) {
 				    alert('Invalid user/pw');
 				}    
 			}
 		});
-//}
-
+}
 
 var completeLogin = function (data) {
 	sessionkey = data.key;
@@ -68,10 +66,9 @@ var completeLogin = function (data) {
 	alert('Welcome!');
 	$("#signup").hide();
 	$("#signin").hide();
-
-	$('#map').removeClass('hidden');
+    $('#map').removeClass('hidden');
+	createMap();
 };
-
 
 var newUser = function () {
 	var username = "";
@@ -114,15 +111,13 @@ var newUser = function () {
 		completeLogin(data);
 
 	}).fail(function (e) {
-<<<<<<< HEAD
 			if (e.status == 403) {
 				if((username != null) && (password!= null)){
 				    alert('user already exists');
 				}
 			}
 		});
-}
-
+};
 
 var watchLocation = function () {
 	navigator.geolocation.watchPosition(function (position) {
@@ -140,6 +135,55 @@ var watchLocation = function () {
 			enableHighAccuracy: true,
 			timeout: 10 * 1000 // 10 seconds
 		});
+};
+
+
+
+var createMap = function () {
+	var path = [];
+
+	var mapOptions = {
+		zoom: 16,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	var latLngBounds = new google.maps.LatLngBounds();
+
+	for (var i = 0; i < path.length; i++) {
+		latLngBounds.extend(path[i]);
+	}
+
+	var mapPath = new google.maps.visualization.HeatmapLayer({
+		data: path,
+		map: map
+	});
+
+	map.fitBounds(latLngBounds);
+
+	var reloadMap = function() {
+		$.getJSON('http://centi.cs.dal.ca:8001/points/' + sessionkey, function (data) {
+			var lastPoint = null;
+			data.forEach(function (v) {
+				// time between this point and the last
+				var delta = lastPoint == null ? 1 : v.time - lastPoint.time;
+
+				var latLng = new google.maps.LatLng(v.lat, v.lon);
+				path.push({
+					location: latLng,
+					weight: delta
+				});
+				mapPath.setData(path);
+				latLngBounds.extend(latLng);
+				map.fitBounds(latLngBounds);
+				google.maps.event.trigger(map, 'resize');
+				lastPoint = v;
+			});
+		});
+	};
+
+	setTimeout(reloadMap, 5000);
+	reloadMap();
 };
 
 
