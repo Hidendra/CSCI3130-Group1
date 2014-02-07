@@ -24,7 +24,7 @@ var existingUser = function () {
 			alert('Invalid user/pw');
 		}
 	});
-}
+};
 
 var completeLogin = function (data) {
 	sessionkey = data.key;
@@ -33,8 +33,7 @@ var completeLogin = function (data) {
 	$("#signup").hide();
 	$("#signin").hide();
 	$('#map').removeClass('hidden');
-
-}
+};
 
 var newUser = function () {
 	var username = null;
@@ -60,7 +59,7 @@ var newUser = function () {
 			alert('user already exists');
 		}
 	});
-}
+};
 
 var watchLocation = function () {
 	navigator.geolocation.watchPosition(function (position) {
@@ -78,7 +77,7 @@ var watchLocation = function () {
 			enableHighAccuracy: true,
 			timeout: 10 * 1000 // 10 seconds
 		});
-}
+};
 
 
 //fns which loads things in the background, fns which deal with buttons, fns which
