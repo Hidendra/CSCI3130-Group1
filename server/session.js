@@ -9,7 +9,7 @@ module.exports = function (db) {
 			sessions.findOne({
 				key: sessionKey
 			}, function (err, docs) {
-				if (docs.length == 0) {
+				if (docs == null) {
 					callback(null);
 				} else {
 					callback(docs.userid);
