@@ -96,7 +96,29 @@ app.post('/position', function (req, res) {
 			time: parseInt(new Date().getTime() / 1000)
 		});
 	});
+});
 
+app.get('/points/:key', function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+
+	session.findSession(req.params.key, function (userid) {
+		if (userid == null) {
+			res.send(403);
+			return;
+		}
+
+		// just view points for the last 24 hours for now
+		var minTime = parseInt(new Date().getTime() / 1000) - 86400;
+
+		points.find({
+			userid: userid,
+			time: {
+				$gte: minTime
+			}
+		}, 'lat lon time -_id', function (err, docs) {
+			res.json(docs);
+		});
+	});
 });
 
 app.listen(8001);
