@@ -169,6 +169,9 @@ var createMap = function () {
 	var reloadMap = function() {
 		$.getJSON('http://centi.cs.dal.ca:8001/points/' + sessionkey, function (data) {
 			var lastPoint = null;
+
+			path = [];
+
 			data.forEach(function (v) {
 				// time between this point and the last
 				var delta = lastPoint == null ? 1 : v.time - lastPoint.time;
@@ -188,7 +191,7 @@ var createMap = function () {
 		});
 	};
 
-	setTimeout(reloadMap, 5000);
+	setTimeout(reloadMap, 2000);
 	reloadMap();
 };
 
