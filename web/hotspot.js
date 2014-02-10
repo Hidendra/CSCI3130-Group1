@@ -97,24 +97,24 @@ var newUser = function () {
                 username: username
 
         },function (data) {//called when successful
-            callback();
+            callback(username);
 
-        }).fail(function (e) {
+        }).fail(function (e){
                         if (e.status == 403) {
-                                if((username != null) && (password!= null)){
-                                    alert('user already exists');
+                              if((username != null) && (password!= null){
+                                   alert('user already exists');
 				   username = prompt("Enter your desired username: ");
 			           checkUser(username, callback);
                                 }
                         }
 			else{
-		           callback();
+		           callback(username);
 			}
                 });
 	};
 	
 
-	checkUser(username, function(){
+	checkUser(username, function(username){
 
 
 	if(username == null)
