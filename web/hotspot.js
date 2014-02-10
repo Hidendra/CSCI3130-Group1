@@ -101,7 +101,7 @@ var newUser = function () {
 
         }).fail(function (e){
                         if (e.status == 403) {
-                              if((username != null) && (password!= null){
+                              if((username != null) && (password!= null)){
                                    alert('user already exists');
 				   username = prompt("Enter your desired username: ");
 			           checkUser(username, callback);
