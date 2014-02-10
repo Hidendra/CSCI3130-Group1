@@ -1,5 +1,5 @@
 var apiUrl = 'http://centi.cs.dal.ca:8001';
-// var apiUrl = 'http://10.10.1.7:8001';
+//var apiUrl = 'http://10.10.1.7:8001';
 var sessionkey = null;
 
 var existingUser = function () {
@@ -159,6 +159,11 @@ var createMap = function () {
 		map: map
 	});
 
+	var marker = new google.maps.Marker({
+		map: map,
+		title: 'Current Location'
+	});
+
 	map.fitBounds(latLngBounds);
 
 	var reloadMap = function() {
@@ -178,6 +183,7 @@ var createMap = function () {
 				map.fitBounds(latLngBounds);
 				google.maps.event.trigger(map, 'resize');
 				lastPoint = v;
+				marker.setPosition(latLng);
 			});
 		});
 	};
