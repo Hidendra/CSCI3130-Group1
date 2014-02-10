@@ -77,13 +77,45 @@ var newUser = function () {
 	//create the new user and check for duplication
 
 	username = prompt('Enter your desired username:');
-	while (username == "")  {
-		alert("Your username cannot be empty");
-		username = prompt('Enter your desired username:');
-		if(username == null){
-			break;
-		}
-	}
+
+       while (username == "")  {
+                alert("Your username cannot be empty");
+                username = prompt('Enter your desired username:');
+                if(username == null){
+                        break;
+                }
+        }
+
+	
+
+/**
+ *@function checks if the user's desired username is currently in the database
+ *@param the username
+ */
+        var checkUser = function (username, callback) {
+             $.post(apiUrl + '/checkuser', {
+                username: username
+
+        },function (data) {//called when successful
+            callback();
+
+        }).fail(function (e) {
+                        if (e.status == 403) {
+                                if((username != null) && (password!= null)){
+                                    alert('user already exists');
+				   username = prompt("Enter your desired username: ");
+			           checkUser(username, callback);
+                                }
+                        }
+			else{
+		           callback();
+			}
+                });
+	};
+	
+
+	checkUser(username, function(){
+
 
 	if(username == null)
 		password = null;
@@ -117,6 +149,7 @@ var newUser = function () {
 				}
 			}
 		});
+    });
 };
 
 var watchLocation = function () {
