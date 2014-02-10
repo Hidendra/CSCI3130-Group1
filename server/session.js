@@ -21,11 +21,6 @@ module.exports = function (db) {
 		createSession: function (userid) {
 			var key = generateKey();
 
-			// expire any older sessions for the user
-			sessions.remove({
-				userid: userid
-			});
-
 			// insert the new session
 			sessions.insert({
 				userid: userid,
