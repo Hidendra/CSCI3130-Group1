@@ -80,6 +80,25 @@ app.post('/user', function (req, res) {
 	});
 });
 
+// Checks if a user exists
+app.post('/checkuser', function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+
+	var username = req.body.username;
+
+	// check that the users did not
+	users.find({
+		username: username
+	}, function (err, docs) {
+		if (docs.length != 0) {
+			res.send(403);
+			return;
+		} else {
+			res.json({});
+		}
+	});
+});
+
 app.post('/position', function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 
