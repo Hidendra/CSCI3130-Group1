@@ -224,7 +224,7 @@ var createMap = function () {
 		});
 	};
 
-	setTimeout(reloadMap, 2000);
+	setInterval(reloadMap, 1000);
 	reloadMap();
 };
 
