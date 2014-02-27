@@ -2,14 +2,21 @@ var apiUrl = 'http://centi.cs.dal.ca:8001';
 //var apiUrl = 'http://10.10.1.7:8001';
 var sessionkey = null;
 
-var existingUser = function () {
+/**
+ * Attempts to login an existing user when the login/signin
+ * button is clicked.
+ *
+ * @method existingUser
+ */
+ var existingUser = function () {
 	/**
     * Set the default values for username and password to be empty string
     * So it won't conflict to null value which is returned when cancle or close button is hit
-	*/
-	var username = "";
-	var password = "";
+    */
+    var username = "";
+    var password = "";
 
+    
 	/**
 	*if no input for username, use a prompt to ask for it
 	*/
@@ -21,153 +28,158 @@ var existingUser = function () {
 			break;
 		}
 	}
-    
+
     /** 
     * null value will be returned if cancle or close button is hit
     * if the username is null, set the password to null 
     * So it won't have the prompt box for password
     */
-	if(username == null)
-		password = null;
+    if(username == null)
+    	password = null;
 
-   if(password != null){
-   	    password = prompt('Enter your password:');
-	    while (password == "") {
-		    alert("Your password cannot be empty");
-		    password = prompt('Enter your password:');
-		    if(password == null){
-			    break;
-			}
-	    }
-   }
-   
-   if( password == null ){
-   		e.status = 404;
-   }
+    if(password != null){
+    	password = prompt('Enter your password:');
+    	while (password == "") {
+    		alert("Your password cannot be empty");
+    		password = prompt('Enter your password:');
+    		if(password == null){
+    			break;
+    		}
+    	}
+    }
+
+    if( password == null ){
+    	e.status = 404;
+    }
     
 
-	$.post(apiUrl + '/user/' + username, {
-		password: password
-	},function (data) {
-		completeLogin(data);
+    $.post(apiUrl + '/user/' + username, {
+    	password: password
+    },function (data) {
+    	completeLogin(data);
 
-	}).fail(function (e) {
-			if (e.status == 404 || e.status == 403){
-				if((username != null) && (password!= null)) {
-				    alert('Invalid user/pw');
-				}    
-			}
-		});
-}
-
-var completeLogin = function (data) {
-	sessionkey = data.key;
-	console.log(data);
-	alert('Welcome!');
-	$("#signup").hide();
-	$("#signin").hide();
-    $('#map').removeClass('hidden');
-	createMap();
+    }).fail(function (e) {
+    	if (e.status == 404 || e.status == 403){
+    		if((username != null) && (password!= null)) {
+    			alert('Invalid user/pw');
+    		}    
+    	}
+    });
 };
 
+/**
+ * Completes the user's login, given data from the server
+ *
+ * @method completeLogin
+ * @param {array} data json data 
+ */
+ var completeLogin = function (data) {
+ 	sessionkey = data.key;
+ 	console.log(data);
+ 	alert('Welcome!');
+ 	$("#signup").hide();
+ 	$("#signin").hide();
+ 	$('#map').removeClass('hidden');
+ 	createMap();
+ };
+
+/**
+ * Creates a new user, making sure they select a
+ * unique username, and logs them in
+ *
+ * @method newUser
+ */
 var newUser = function () {
-	var username = "";
-	var password = "";
+ 	var username = "";
+ 	var password = "";
 
 	//create the new user and check for duplication
 
 	username = prompt('Enter your desired username:');
 
-       while (username == "")  {
-                alert("Your username cannot be empty");
-                username = prompt('Enter your desired username:');
-                if(username == null){
-                        break;
-                }
-        }
+	while (username == "")  {
+		alert("Your username cannot be empty");
+		username = prompt('Enter your desired username:');
+		if(username == null){
+			break;
+		}
+	}
 
 	
 
-/**
- *@function checks if the user's desired username is currently in the database
- *@param the username
- */
-        var checkUser = function (username, callback) {
-             $.post(apiUrl + '/checkuser', {
-                username: username
-
-        },function (data) {//called when successful
-            callback(username);
-
-        }).fail(function (e){
-                        if (e.status == 403) {
-                              if((username != null) && (password!= null)){
-                                   alert('user already exists');
-				   username = prompt("Enter your desired username: ");
-			           checkUser(username, callback);
-                                }
-                        }
-			else{
-		           callback(username);
+	/**
+	 *@function checks if the user's desired username is currently in the database
+	 *@param the username
+	 */
+	 var checkUser = function (username, callback) {
+	 	$.post(apiUrl + '/checkuser', {
+	 		username: username
+		},function (data) {//called when successful
+			callback(username);
+		}).fail(function (e) {
+			if (e.status == 403) {
+				if(username != null && password != null) {
+					alert('user already exists');
+					username = prompt("Enter your desired username: ");
+					checkUser(username, callback);
+				}
+			} else {
+				callback(username);
 			}
-                });
+		});
 	};
-	
+
 
 	checkUser(username, function(username){
+		if(username == null)
+			password = null;
 
+		if(password != null){
+			password = prompt('Enter your password:');
+			while (password == "") {
+				alert("Your password cannot be empty");
+				password = prompt('Enter your password:');
+				if(password == null){
+					break;
+				}
+			}
+		}
 
-	if(username == null)
-		password = null;
+		if(password == null) {
+			e.status = 403;
+		}
 
-	if(password != null){
-   	    password = prompt('Enter your password:');
-	    while (password == "") {
-		    alert("Your password cannot be empty");
-		    password = prompt('Enter your password:');
-		    if(password == null){
-		    	break;
-		    }
-	    }
-   }
-
-   if( password == null ){
-   		e.status = 403;
-   }
-	
-
-	$.post(apiUrl + '/user', {
-		username: username,
-		password: password
-	},function (data) {
-		completeLogin(data);
-
-	}).fail(function (e) {
+		$.post(apiUrl + '/user', {
+			username: username,
+			password: password
+		},function (data) {
+			completeLogin(data);
+		}).fail(function (e) {
 			if (e.status == 403) {
-				if((username != null) && (password!= null)){
-				    alert('user already exists');
+				if(username != null && password!= null) {
+					alert('user already exists');
 				}
 			}
 		});
-    });
+	});
 };
 
 var watchLocation = function () {
 	navigator.geolocation.watchPosition(function (position) {
-			console.log(position);
-			$.post(apiUrl + '/position', {
-				key: sessionkey,
-				lat: position.coords.latitude,
-				lon: position.coords.longitude
-			});
-		},
-		function (positionError) {
-			$("#error").append("Error: " + positionError.message + "<br />");
-		},
-		{
-			enableHighAccuracy: true,
-			timeout: 10 * 1000 // 10 seconds
+		// console.log(position);
+		$.post(apiUrl + '/position', {
+			key: sessionkey,
+			lat: position.coords.latitude,
+			lon: position.coords.longitude
 		});
+	},
+	function (positionError) {
+		$("#error").append("Error: " + positionError.message + "<br />");
+	},
+	{
+		enableHighAccuracy: true,
+		timeout: 10 * 1000 // 10 seconds
+	});
 };
 
 
@@ -227,7 +239,3 @@ var createMap = function () {
 	setInterval(reloadMap, 1000);
 	reloadMap();
 };
-
-
-//fns which loads things in the background,  fns which
-//take in text for user/password, fns that true or false login info,fn for new user	

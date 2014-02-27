@@ -1,3 +1,10 @@
+/**
+ * The main app module for HotSpot. This is ran by nodejs.
+ *
+ * @module HotSpot
+ * @main HotSpot
+ */
+
 var express = require('express');
 var sha1 = require('sha1');
 var app = express();

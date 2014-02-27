@@ -13,6 +13,17 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map-canvas {
+            height: 100%;
+        }
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,10 +49,7 @@
 
     <div class="row" style="margin: 0 auto;">
         <div id="map" class="hidden">
-            <div id="map-canvas" style="min-height: 500px;"></div>
-
-            <br />
-
+            <div id="map-canvas"></div>
             <button id="watch" type="watch" class="btn btn-default" onclick="watchLocation()">Watch</button>
         </div>
     </div>
