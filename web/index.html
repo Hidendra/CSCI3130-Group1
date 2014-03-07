@@ -7,11 +7,23 @@
     <title>Hotspot</title>
 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true&drawing=true&visualization=true"></script>
     <script src="hotspot.js"></script>
 
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map-canvas {
+            height: 500px;
+        }
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,29 +34,31 @@
 </head>
 <body>
 
-	<div class="container">
-    <h3 class="text-muted"><b>Hot</b>spot</h3>
+<div class="container-fluid" style="margin: 0 auto; width: 100%; padding: 0;">
 
-    <div class="form-group">
-        <button id="signup" type="Sign Up" class="btn btn-default" onclick="newUser()">Sign up</button>
+    <div class="row col-xs-offset-1">
+        <h3 class="text-muted"><b>Hot</b>spot</h3>
+
+        <div class="form-group">
+            <button id="signup" type="Sign Up" class="btn btn-default" onclick="newUser()">Sign up</button>
+        </div>
+        <div class="form-group">
+            <button id="signin" type="Sign In" class="btn btn-default" onclick="existingUser()">Sign in</button>
+        </div>
     </div>
-    <div class="form-group">
-        <button id="signin" type="Sign In" class="btn btn-default" onclick="existingUser()">Sign in</button>
+
+    <div class="row" style="margin: 0 auto;">
+        <div id="map" class="hidden">
+            <div id="map-canvas"></div>
+            <button id="watch" type="watch" class="btn btn-default" onclick="watchLocation()">Watch</button>
+        </div>
     </div>
 
-
-
-<div id="map" class="hidden">HEY LOOK.
-
-        <button id="watch" type="watch" class="btn btn-default" onclick="watchLocation()">Watch</button>
-
-</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 </div>
-
 
 
 </body>

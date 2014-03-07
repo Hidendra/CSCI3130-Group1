@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="testforoffbutton.css">
+</head>
+<body>
+<script>
+
+function myFunction(e)
+{  
+   if(e.className=="gpsison"){
+      e.className="gpsisoff"; 
+      e.innerHTML="OFF";
+   }
+   else if(e.className=="gpsisoff"){
+      e.className="gpsison";
+      e.innerHTML="ON";
+   }
+}
+</script>
+<button class="gpsison" id="1" onclick="myFunction(this)" ><b>ON</b>
+</body>
+</html> 

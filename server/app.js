@@ -1,3 +1,10 @@
+/**
+ * The main app module for HotSpot. This is ran by nodejs.
+ *
+ * @module HotSpot
+ * @main HotSpot
+ */
+
 var express = require('express');
 var sha1 = require('sha1');
 var app = express();
@@ -80,24 +87,65 @@ app.post('/user', function (req, res) {
 	});
 });
 
+// Checks if a user exists
+app.post('/checkuser', function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+
+	var username = req.body.username;
+
+	// check that the users did not
+	users.find({
+		username: username
+	}, function (err, docs) {
+		if (docs.length != 0) {
+			res.send(403);
+			return;
+		} else {
+			res.json({});
+		}
+	});
+});
+
 app.post('/position', function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 
-	var userid = session.findSession(req.body.key);
-	if (userid === null){
-		res.send(403);
-		return;
-	}
+	session.findSession(req.body.key, function(userid) {
+		if (userid == null){
+			res.send(403);
+			return;
+		}
 
-	points.insert({
-		userid: userid,
-		lat: parseFloat(req.body.lat),
-		lon: parseFloat(req.body.lon),
-		time: new Date().getTime()/1000
+		points.insert({
+			userid: userid,
+			lat: parseFloat(req.body.lat),
+			lon: parseFloat(req.body.lon),
+			time: parseInt(new Date().getTime() / 1000)
+		});
 	});
+});
 
+app.get('/points/:key', function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
 
-})
+	session.findSession(req.params.key, function (userid) {
+		if (userid == null) {
+			res.send(403);
+			return;
+		}
+
+		// just view points for the last 24 hours for now
+		var minTime = parseInt(new Date().getTime() / 1000) - 86400;
+
+		points.find({
+			userid: userid,
+			time: {
+				$gte: minTime
+			}
+		}, 'lat lon time -_id', function (err, docs) {
+			res.json(docs);
+		});
+	});
+});
 
 app.listen(8001);
 

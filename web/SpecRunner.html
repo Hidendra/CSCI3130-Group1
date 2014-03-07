@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Jasmine Spec Runner v2.0.0</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.0.0/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="lib/jasmine-2.0.0/jasmine.css">
+
+  <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine-html.js"></script>
+  <script type="text/javascript" src="lib/jasmine-2.0.0/boot.js"></script>
+
+  <!-- include source files here... -->
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true&drawing=true&visualization=true"></script>
+    <script src="hotspot.js"></script>
+
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- include spec files here... -->
+  <script type="text/javascript" src="spec/LoginSpec.js"></script>
+  <script type="text/javascript" src="spec/RegisterSpec.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid" style="margin: 0 auto; width: 100%; padding: 0;">
+
+    <div class="row col-xs-offset-1">
+        <h3 class="text-muted"><b>Hot</b>spot</h3>
+
+        <div class="form-group">
+            <button id="signup" type="Sign Up" class="btn btn-default" onclick="newUser()">Sign up</button>
+        </div>
+        <div class="form-group">
+            <button id="signin" type="Sign In" class="btn btn-default" onclick="existingUser()">Sign in</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin: 0 auto;">
+        <div id="map" class="hidden">
+            <div id="map-canvas" style="min-height: 500px;"></div>
+
+            <br />
+
+            <button id="watch" type="watch" class="btn btn-default" onclick="watchLocation()">Watch</button>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</div>
+
+
+
+</body>
+</html>
