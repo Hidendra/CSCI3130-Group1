@@ -21,7 +21,13 @@
         }
 
         #map-canvas {
+		    <!--fixed size of the map-->
             height: 500px;
+			width: 1500px;
+			<!--fixed position of map-->
+			position: absolute;
+			left:50px;
+			top: 50px;
         }
     </style>
 
@@ -50,7 +56,23 @@
     <div class="row" style="margin: 0 auto;">
         <div id="map" class="hidden">
             <div id="map-canvas"></div>
-            <button id="watch" type="watch" class="btn btn-default" onclick="watchLocation()">Watch</button>
+			<!-- GPS button on the map page (date: 03/07)-->
+			<link rel="stylesheet" type="text/css" href="testforoffbutton.css">
+			<script>
+                function myFunction(e)
+                {  
+                     if(e.className=="gpsison"){
+                         e.className="gpsisoff"; 
+                         e.innerHTML="OFF";
+                     }
+                     else if(e.className=="gpsisoff"){
+                         e.className="gpsison";
+                         e.innerHTML="ON";
+                     }
+                }
+             </script>
+             <button class="gpsison" id="1" style="position:absolute; top:700px; left:200px;" onclick="myFunction(this)" ><b>ON</b>		
+			<!--gps button ends-->
         </div>
     </div>
 
