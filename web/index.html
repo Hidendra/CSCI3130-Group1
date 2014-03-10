@@ -47,14 +47,16 @@
                      if(e.className=="gpsison"){
                          e.className="gpsisoff"; 
                          e.innerHTML="OFF";
+						 clearLocation();
                      }
                      else if(e.className=="gpsisoff"){
                          e.className="gpsison";
                          e.innerHTML="ON";
+						 watchLocation();
                      }
                 }
              </script>
-             <button class="gpsison" id="1" style="position:absolute; top:700px; left:200px;" onclick="myFunction(this)" ><b>ON</b>		
+             <button class="gpsisoff" id="gpsToggle" style="position:absolute; top:700px; left:200px;" onclick="myFunction(this)" ><b>OFF</b>		
 			<!--gps button ends-->
         </div>
     </div>

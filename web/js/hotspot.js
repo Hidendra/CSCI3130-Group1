@@ -1,6 +1,7 @@
 var apiUrl = 'http://centi.cs.dal.ca:8001';
 //var apiUrl = 'http://10.10.1.7:8001';
 var sessionkey = null;
+var watchID = null;
 
 /**
  * Attempts to login an existing user when the login/signin
@@ -76,7 +77,7 @@ var sessionkey = null;
  var completeLogin = function (data) {
  	sessionkey = data.key;
  	console.log(data);
- 	alert('Welcome!');
+ 	alert('Welcome!'); 
  	$("#signup").hide();
  	$("#signin").hide();
  	$('#map').removeClass('hidden');
@@ -165,7 +166,7 @@ var newUser = function () {
 };
 
 var watchLocation = function () {
-	navigator.geolocation.watchPosition(function (position) {
+	watchID = navigator.geolocation.watchPosition(function (position) {
 		// console.log(position);
 		$.post(apiUrl + '/position', {
 			key: sessionkey,
@@ -182,7 +183,9 @@ var watchLocation = function () {
 	});
 };
 
-
+var clearLocation = function () {
+	navigator.geolocation.clearWatch(watchID);
+}
 
 var createMap = function () {
 	var path = [];

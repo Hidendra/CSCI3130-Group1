@@ -25,6 +25,7 @@
   <!-- include spec files here... -->
   <script type="text/javascript" src="spec/LoginSpec.js"></script>
   <script type="text/javascript" src="spec/RegisterSpec.js"></script>
+  <script type="text/javascript" src="spec/ButtonSpec.js"></script>
 
 </head>
 
@@ -44,11 +45,26 @@
 
     <div class="row" style="margin: 0 auto;">
         <div id="map" class="hidden">
-            <div id="map-canvas" style="min-height: 500px;"></div>
-
-            <br />
-
-            <button id="watch" type="watch" class="btn btn-default" onclick="watchLocation()">Watch</button>
+            <div id="map-canvas"></div>
+			<!-- GPS button on the map page (date: 03/07)-->
+			<link rel="stylesheet" type="text/css" href="testforoffbutton.css">
+			<script>
+                function myFunction(e)
+                {  
+                     if(e.className=="gpsison"){
+                         e.className="gpsisoff"; 
+                         e.innerHTML="OFF";
+						 clearLocation();
+                     }
+                     else if(e.className=="gpsisoff"){
+                         e.className="gpsison";
+                         e.innerHTML="ON";
+						 watchLocation();
+                     }
+                }
+             </script>
+             <button class="gpsisoff" id="gpsToggle" style="position:absolute; top:700px; left:200px;" onclick="myFunction(this)" ><b>OFF</b>		
+			<!--gps button ends-->
         </div>
     </div>
 
@@ -57,7 +73,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 </div>
-
 
 
 </body>
