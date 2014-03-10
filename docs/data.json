@@ -4,9 +4,264 @@
         "description": "CSCI 3130 Group One App",
         "version": "0.0.1"
     },
-    "files": {},
+    "files": {
+        "web/js/hotspot.js": {
+            "name": "web/js/hotspot.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "web/lib/jasmine-2.0.0/boot.js": {
+            "name": "web/lib/jasmine-2.0.0/boot.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
     "modules": {},
     "classes": {},
-    "classitems": [],
-    "warnings": []
+    "classitems": [
+        {
+            "file": "web/js/hotspot.js",
+            "line": 5,
+            "description": "Attempts to login an existing user when the login/signin\nbutton is clicked.",
+            "itemtype": "method",
+            "name": "existingUser",
+            "class": ""
+        },
+        {
+            "file": "web/js/hotspot.js",
+            "line": 12,
+            "description": "Set the default values for username and password to be empty string\nSo it won't conflict to null value which is returned when cancle or close button is hit",
+            "class": ""
+        },
+        {
+            "file": "web/js/hotspot.js",
+            "line": 20,
+            "description": "if no input for username, use a prompt to ask for it",
+            "class": ""
+        },
+        {
+            "file": "web/js/hotspot.js",
+            "line": 32,
+            "description": "null value will be returned if cancle or close button is hit\nif the username is null, set the password to null \nSo it won't have the prompt box for password",
+            "class": ""
+        },
+        {
+            "file": "web/js/hotspot.js",
+            "line": 70,
+            "description": "Completes the user's login, given data from the server",
+            "itemtype": "method",
+            "name": "completeLogin",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "json data",
+                    "type": "Array"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "web/js/hotspot.js",
+            "line": 86,
+            "description": "Creates a new user, making sure they select a\nunique username, and logs them in",
+            "itemtype": "method",
+            "name": "newUser",
+            "class": ""
+        },
+        {
+            "file": "web/js/hotspot.js",
+            "line": 110,
+            "itemtype": "method",
+            "name": "checks if the user's desired username is currently in the database",
+            "params": [
+                {
+                    "name": "the",
+                    "description": "username"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 1,
+            "description": "Starting with version 2.0, this file \"boots\" Jasmine, performing all of the necessary initialization before executing the loaded environment and all of a project's specs. This file should be loaded after `jasmine.js`, but before any project source files or spec files are loaded. Thus this file can also be used to customize Jasmine for a project.\n\nIf a project is using Jasmine via the standalone distribution, this file can be customized directly. If a project is using Jasmine via the [Ruby gem][jasmine-gem], this file can be copied into the support directory via `jasmine copy_boot_js`. Other environments (e.g., Python) will have different mechanisms.\n\nThe location of `boot.js` can be specified and/or overridden in `jasmine.yml`.\n\n[jasmine-gem]: http://github.com/pivotal/jasmine-gem",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 13,
+            "description": "## Require &amp; Instantiate\n\nRequire Jasmine's core files. Specifically, this requires and attaches all of Jasmine's code to the `jasmine` reference.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 20,
+            "description": "Since this is being run in a browser and the results should populate to an HTML page, require the HTML-specific Jasmine code, injecting the same reference.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 25,
+            "description": "Create the Jasmine environment. This is used to run all specs in a project.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 30,
+            "description": "## The Global Interface\n\nBuild up the functions that will be exposed as the Jasmine public interface. A project can customize, rename or alias any of these functions as desired, provided the implementation remains unchanged.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 77,
+            "description": "Add all of the Jasmine global/public interface to the proper global, so a project can use the public interface directly. For example, calling `describe` in specs instead of `jasmine.getEnv().describe`.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 86,
+            "description": "Expose the interface for adding custom equality testers.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 93,
+            "description": "Expose the interface for adding custom expectation matchers",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 100,
+            "description": "Expose the mock interface for the JavaScript timeout functions",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 107,
+            "description": "## Runner Parameters\n\nMore browser specific code - wrap the query string in an object and to allow for getting/setting parameters from the runner user interface.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 120,
+            "description": "## Reporters\nThe `HtmlReporter` builds all of the HTML UI for the runner page. This reporter paints the dots, stars, and x's for specs, as well as all spec names and all failures (if any).",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 133,
+            "description": "The `jsApiReporter` also receives spec results, and is used by any environment that needs to extract the results  from JavaScript.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 139,
+            "description": "Filter which specs will be run by matching the start of the full name against the `spec` query param.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 150,
+            "description": "Setting up timing functions to be able to be overridden. Certain browsers (Safari, IE 8, phantomjs) require this hack.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 158,
+            "description": "## Execution\n\nReplace the browser window's `onload`, ensure it's called, and then run all of the loaded specs. This includes initializing the `HtmlReporter` instance and then executing the loaded Jasmine environment. All of this will happen after all of the specs are loaded.",
+            "class": ""
+        },
+        {
+            "file": "web/lib/jasmine-2.0.0/boot.js",
+            "line": 173,
+            "description": "Helper function for readability above.",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: function with method",
+            "line": " web/js/hotspot.js:110"
+        },
+        {
+            "message": "Missing item type\nSet the default values for username and password to be empty string\nSo it won't conflict to null value which is returned when cancle or close button is hit",
+            "line": " web/js/hotspot.js:12"
+        },
+        {
+            "message": "Missing item type\nif no input for username, use a prompt to ask for it",
+            "line": " web/js/hotspot.js:20"
+        },
+        {
+            "message": "Missing item type\nnull value will be returned if cancle or close button is hit\nif the username is null, set the password to null \nSo it won't have the prompt box for password",
+            "line": " web/js/hotspot.js:32"
+        },
+        {
+            "message": "Missing item type\nStarting with version 2.0, this file \"boots\" Jasmine, performing all of the necessary initialization before executing the loaded environment and all of a project's specs. This file should be loaded after `jasmine.js`, but before any project source files or spec files are loaded. Thus this file can also be used to customize Jasmine for a project.\n\nIf a project is using Jasmine via the standalone distribution, this file can be customized directly. If a project is using Jasmine via the [Ruby gem][jasmine-gem], this file can be copied into the support directory via `jasmine copy_boot_js`. Other environments (e.g., Python) will have different mechanisms.\n\nThe location of `boot.js` can be specified and/or overridden in `jasmine.yml`.\n\n[jasmine-gem]: http://github.com/pivotal/jasmine-gem",
+            "line": " web/lib/jasmine-2.0.0/boot.js:1"
+        },
+        {
+            "message": "Missing item type\n## Require &amp; Instantiate\n\nRequire Jasmine's core files. Specifically, this requires and attaches all of Jasmine's code to the `jasmine` reference.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:13"
+        },
+        {
+            "message": "Missing item type\nSince this is being run in a browser and the results should populate to an HTML page, require the HTML-specific Jasmine code, injecting the same reference.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:20"
+        },
+        {
+            "message": "Missing item type\nCreate the Jasmine environment. This is used to run all specs in a project.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:25"
+        },
+        {
+            "message": "Missing item type\n## The Global Interface\n\nBuild up the functions that will be exposed as the Jasmine public interface. A project can customize, rename or alias any of these functions as desired, provided the implementation remains unchanged.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:30"
+        },
+        {
+            "message": "Missing item type\nAdd all of the Jasmine global/public interface to the proper global, so a project can use the public interface directly. For example, calling `describe` in specs instead of `jasmine.getEnv().describe`.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:77"
+        },
+        {
+            "message": "Missing item type\nExpose the interface for adding custom equality testers.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:86"
+        },
+        {
+            "message": "Missing item type\nExpose the interface for adding custom expectation matchers",
+            "line": " web/lib/jasmine-2.0.0/boot.js:93"
+        },
+        {
+            "message": "Missing item type\nExpose the mock interface for the JavaScript timeout functions",
+            "line": " web/lib/jasmine-2.0.0/boot.js:100"
+        },
+        {
+            "message": "Missing item type\n## Runner Parameters\n\nMore browser specific code - wrap the query string in an object and to allow for getting/setting parameters from the runner user interface.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:107"
+        },
+        {
+            "message": "Missing item type\n## Reporters\nThe `HtmlReporter` builds all of the HTML UI for the runner page. This reporter paints the dots, stars, and x's for specs, as well as all spec names and all failures (if any).",
+            "line": " web/lib/jasmine-2.0.0/boot.js:120"
+        },
+        {
+            "message": "Missing item type\nThe `jsApiReporter` also receives spec results, and is used by any environment that needs to extract the results  from JavaScript.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:133"
+        },
+        {
+            "message": "Missing item type\nFilter which specs will be run by matching the start of the full name against the `spec` query param.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:139"
+        },
+        {
+            "message": "Missing item type\nSetting up timing functions to be able to be overridden. Certain browsers (Safari, IE 8, phantomjs) require this hack.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:150"
+        },
+        {
+            "message": "Missing item type\n## Execution\n\nReplace the browser window's `onload`, ensure it's called, and then run all of the loaded specs. This includes initializing the `HtmlReporter` instance and then executing the loaded Jasmine environment. All of this will happen after all of the specs are loaded.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:158"
+        },
+        {
+            "message": "Missing item type\nHelper function for readability above.",
+            "line": " web/lib/jasmine-2.0.0/boot.js:173"
+        }
+    ]
 }

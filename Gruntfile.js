@@ -15,24 +15,55 @@ module.exports = function(grunt) {
             }
        },
         uglify: {
-            compile: {
+            javascript: {
                 files: {
-                    'js/out.js': ['web/login.js']
+                    'web-dist/js/hotspot.js': [ 'web/js/*.js' ]
                 }
             }
         },
+		cssmin: {
+			minify: {
+				expand: true,
+				cwd: 'web/css',
+				src: ['*.css', '!*.min.css'],
+				dest: 'web-dist/css',
+				ext: '.css'
+			}
+		},
+		copy: {
+			main: {
+				files: [
+					{
+						expand: true,
+						cwd: 'web',
+						src: '*.html',
+						dest: 'web-dist',
+						filter: function (f) {
+							return f.indexOf("SpecRunner") == -1;
+						}
+					},
+					{
+						expand: true,
+						cwd: 'web',
+						src: [ 'lib', 'fonts' ],
+						dest: 'web-dist'
+					}
+				]
+			}
+		},
         clean:
-            ['docs', 'js']
-
+            ['docs', 'web-dist']
 
     });
  
     // Load the plugins
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     // Default task(s).
-    grunt.registerTask('default', ['yuidoc', 'uglify']);
+    grunt.registerTask('default', ['yuidoc', 'uglify', 'cssmin', 'copy']);
 
 };
