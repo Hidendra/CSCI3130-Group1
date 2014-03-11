@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 description: '<%= pkg.description %>',
                 version: '<%= pkg.version %>',
                 options: {
-                    paths: 'web',
+                    paths: [ 'server', 'web' ],
                     outdir: 'docs'
                 }
             }
