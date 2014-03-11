@@ -51,13 +51,23 @@ module.exports = function(grunt) {
 				]
 			}
 		},
+		jasmine: {
+			web: {
+				src: 'web/**/*.js',
+				options: {
+					specs: 'web/spec/*Spec.js',
+					helpers: 'web/spec/*Helper.js'
+				}
+			}
+		},
         clean:
             ['docs', 'web-dist']
 
     });
- 
+
     // Load the plugins
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
+	grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
