@@ -16,9 +16,10 @@ module.exports = function(grunt) {
        },
         uglify: {
             javascript: {
-                files: {
-                    'web-dist/js/hotspot.js': [ 'web/js/*.js' ]
-                }
+				expand: true,
+				cwd: 'web/js',
+				src: ['*.js', '!*.min.js'],
+				dest: 'web-dist/js'
             }
         },
 		cssmin: {
@@ -26,8 +27,7 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: 'web/css',
 				src: ['*.css', '!*.min.css'],
-				dest: 'web-dist/css',
-				ext: '.css'
+				dest: 'web-dist/css'
 			}
 		},
 		copy: {
