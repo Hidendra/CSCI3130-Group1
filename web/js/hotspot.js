@@ -181,10 +181,12 @@ var watchLocation = function () {
 		enableHighAccuracy: true,
 		timeout: 10 * 1000 // 10 seconds
 	});
+	alert("GPS is now ON.");
 };
 
 var clearLocation = function () {
 	navigator.geolocation.clearWatch(watchID);
+	alert("GPS is now OFF.");
 }
 
 var createMap = function () {
