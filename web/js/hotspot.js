@@ -244,3 +244,42 @@ var createMap = function () {
 	setInterval(reloadMap, 1000);
 	reloadMap();
 };
+
+/*After clicking My Place button, turn to the page of favourate places list*/
+var myplace = function(){
+ 	$("#signup").hide();
+ 	$("#signin").hide();
+ 	$('#map').hide();
+	/*Any paremeters for the showPlaceList function?*/
+	showPlaceList()
+};
+
+var showPlaceList = function(data){
+    //the pathname has not been made yet
+    $.getJSON('http://centi.cs.dal.ca:8001/points/' + sessionkey, function (data) {
+			var favplace = null;
+
+			favlist = [];
+
+			data.forEach(function (v) {
+			    //longitude and latitude
+				var latLng = new google.maps.LatLng(v.lat, v.lon);
+				//name of places
+                var placename = v.name;
+				favlist.push({
+					location: latLng,
+					name: placename
+				});
+				//method that shows names of places in a list
+				
+				/*
+				mapPath.setData(path);
+				latLngBounds.extend(latLng);
+				map.fitBounds(latLngBounds);
+				google.maps.event.trigger(map, 'resize');
+				lastPoint = v;
+				marker.setPosition(latLng);
+				*/
+			});
+		});
+};
