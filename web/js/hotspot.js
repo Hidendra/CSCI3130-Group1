@@ -251,26 +251,25 @@ var myplace = function(){
  	$("#signin").hide();
  	$('#map').hide();
 	/*Any paremeters for the showPlaceList function?*/
-	showPlaceList(username);
+	showPlaceList()
 };
 
 var showPlaceList = function(data){
-    /*marker of the places (remains to be checked) */
-	var marker = new google.maps.Marker({
-		map: map,
-		title: 'Favourate Locations'
-	});
-    var loadPlace = function(){
-	    /*pathname of the location list hasn't be set yet*/
-	    //$.getJSON('http://centi.cs.dal.ca:8001/points/' + sessionkey, function (data) {
-			var lastPoint = null;
-			path = [];
-			data.forEach(function (v) {
-				// time between this point and the last
-				var delta = lastPoint == null ? 1 : v.time - lastPoint.time;
+    //the pathname has not been made yet
+    $.getJSON('http://centi.cs.dal.ca:8001/points/' + sessionkey, function (data) {
+			var favplace = null;
 
+			favlist = [];
+
+			data.forEach(function (v) {
+			    //longitude and latitude
 				var latLng = new google.maps.LatLng(v.lat, v.lon);
-				path.push({
+				//name of places
+                var placename = v.name;
+				//method that shows names of places in a list
+				
+				/*
+				favlist.push({
 					location: latLng,
 					weight: delta
 				});
@@ -280,7 +279,7 @@ var showPlaceList = function(data){
 				google.maps.event.trigger(map, 'resize');
 				lastPoint = v;
 				marker.setPosition(latLng);
+				*/
 			});
 		});
-	};
 };
