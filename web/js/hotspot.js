@@ -266,13 +266,13 @@ var showPlaceList = function(data){
 				var latLng = new google.maps.LatLng(v.lat, v.lon);
 				//name of places
                 var placename = v.name;
+				favlist.push({
+					location: latLng,
+					name: placename
+				});
 				//method that shows names of places in a list
 				
 				/*
-				favlist.push({
-					location: latLng,
-					weight: delta
-				});
 				mapPath.setData(path);
 				latLngBounds.extend(latLng);
 				map.fitBounds(latLngBounds);
