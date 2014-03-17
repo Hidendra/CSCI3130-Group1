@@ -53,10 +53,9 @@ module.exports = function(grunt) {
 		},
 		jasmine: {
 			web: {
-				src: 'web/**/*.js',
 				options: {
-					specs: 'web/spec/*Spec.js',
-					helpers: 'web/spec/*Helper.js'
+					outfile: 'web/_SpecRunner.html',
+					template: 'web/SpecRunner.html'
 				}
 			}
 		},

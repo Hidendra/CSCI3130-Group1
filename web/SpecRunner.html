@@ -1,31 +1,28 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Jasmine Spec Runner v2.0.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Jasmine Spec Runner v2.0.0</title>
 
-  <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.0.0/jasmine_favicon.png">
-  <link rel="stylesheet" type="text/css" href="lib/jasmine-2.0.0/jasmine.css">
+    <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.0.0/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="lib/jasmine-2.0.0/jasmine.css">
 
-  <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine.js"></script>
-  <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine-html.js"></script>
-  <script type="text/javascript" src="lib/jasmine-2.0.0/boot.js"></script>
-
-  <!-- include source files here... -->
+    <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine.js"></script>
+    <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine-html.js"></script>
+    <script type="text/javascript" src="lib/jasmine-2.0.0/boot.js"></script>
+    <script type="text/javascript" src="../.grunt/grunt-contrib-jasmine/reporter.js"></script>
 
     <script src="js/jquery-1.11.0.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true&drawing=true&visualization=true"></script>
     <script src="js/hotspot.js"></script>
 
-
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-
-  <!-- include spec files here... -->
-  <script type="text/javascript" src="spec/LoginSpec.js"></script>
-  <script type="text/javascript" src="spec/RegisterSpec.js"></script>
-  <script type="text/javascript" src="spec/ButtonSpec.js"></script>
+    <!-- include spec files here... -->
+    <script type="text/javascript" src="spec/LoginSpec.js"></script>
+    <script type="text/javascript" src="spec/RegisterSpec.js"></script>
+    <script type="text/javascript" src="spec/ButtonSpec.js"></script>
 
 </head>
 
@@ -50,9 +47,9 @@
 			<link rel="stylesheet" type="text/css" href="testforoffbutton.css">
 			<script>
                 function myFunction(e)
-                {  
+                {
                      if(e.className=="gpsison"){
-                         e.className="gpsisoff"; 
+                         e.className="gpsisoff";
                          e.innerHTML="OFF";
 						 clearLocation();
                      }
@@ -63,7 +60,7 @@
                      }
                 }
              </script>
-             <button class="gpsisoff" id="gpsToggle" style="position:absolute; top:700px; left:200px;" onclick="myFunction(this)" ><b>OFF</b>		
+             <button class="gpsisoff" id="gpsToggle" style="position:absolute; top:700px; left:200px;" onclick="myFunction(this)" ><b>OFF</b>
 			<!--gps button ends-->
         </div>
     </div>
