@@ -40,7 +40,7 @@
         <div id="map" class="hidden">
             <div id="map-canvas"></div>
 			<!-- GPS button on the map page (date: 03/07)-->
-			<link rel="stylesheet" type="text/css" href="testforoffbutton.css">
+			<link rel="stylesheet" type="text/css" href="css/hotspot.css">
 			<script>
                 function myFunction(e)
                 {  
@@ -56,8 +56,14 @@
                      }
                 }
              </script>
-             <button class="gpsisoff" id="gpsToggle" style="position:fixed; top:100px; left:100px;" onclick="myFunction(this)" ><b>OFF</b>		
+             <button class="gpsisoff" id="gpsToggle" style="position:absolute; top:700px; left:100px;" onclick="myFunction(this)" ><b>OFF</b>		
 			<!--gps button ends-->
+			<!--button for important places-->
+			<button id="myplace" type="My Place" class="btn btn-default" style="position:absolute; top:700px; left:300px;" onclick="myplace()">My Place</button>
+			<script>
+			    
+			</script>
+			<!--My Place button ends-->
         </div>
     </div>
 
