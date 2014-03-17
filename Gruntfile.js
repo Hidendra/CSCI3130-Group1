@@ -73,6 +73,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     // Default task(s).
-    grunt.registerTask('default', ['yuidoc', 'uglify', 'cssmin', 'copy']);
+    grunt.registerTask('default', ['jasmine', 'yuidoc', 'uglify', 'cssmin', 'copy']);
 
 };
