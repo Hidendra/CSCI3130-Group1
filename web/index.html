@@ -37,7 +37,11 @@
     </div>
 
     <div class="row" style="margin: 0 auto;">
-        <div id="map" class="hidden">
+      <div id="toshowbuttons" class="hidden">
+	<p style= "font-size:25px;text-align: center "> Click on a button to get information on your time spend there! </p>
+	
+     </div> 
+      <div id="map" class="hidden">
             <div id="map-canvas"></div>
 			<!-- GPS button on the map page (date: 03/07)-->
 			<link rel="stylesheet" type="text/css" href="css/hotspot.css">
@@ -55,11 +59,18 @@
 						 watchLocation();
                      }
                 }
+
+		function myPlace()
+		{
+		   $("#map").hide();
+		   $("#toshowbuttons").removeClass("hidden");
+		   
+		}
              </script>
-             <button class="gpsisoff" id="gpsToggle" style="position:absolute; top:700px; left:100px;" onclick="myFunction(this)" ><b>OFF</b>		
+             <button class="gpsisoff" id="gpsToggle" onclick="myFunction(this)" ><b>OFF</b>		
 			<!--gps button ends-->
 			<!--button for important places-->
-			<button id="myplace" type="My Place" class="btn btn-default" style="position:absolute; top:700px; left:300px;" onclick="myplace()">My Place</button>
+			<button id="myplace" type="My Place" class="btn btn-default" onclick="myPlace()">My Place</button>
 			<!--trying to show elements in a table-->
 			<script>
 			    function showPlaceList(favlist)

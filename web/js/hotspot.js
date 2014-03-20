@@ -232,8 +232,8 @@ var createMap = function () {
 					weight: delta
 				});
 				mapPath.setData(path);
-				latLngBounds.extend(latLng);
-				map.fitBounds(latLngBounds);
+				//latLngBounds.extend(latLng);
+				//map.fitBounds(latLngBounds);
 				google.maps.event.trigger(map, 'resize');
 				lastPoint = v;
 				marker.setPosition(latLng);
