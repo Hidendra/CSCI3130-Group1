@@ -72,14 +72,19 @@
 			<!--button for important places-->
 			<button id="myplace" type="My Place" class="btn btn-default" onclick="myPlace()">My Place</button>
 			<!--trying to show elements in a table-->
+                 <div id="placesButton"></div>
+
+
 			<script>
 			    function showPlaceList(favlist)
 				{
-				    while(favlist != null){
-					<table style="width:300px">
-					<tr>
-                       <td>favlist.name</td>
-                    </tr>
+				    for(var i =0; i<favlist.length; i++){
+                        $("#toshowbuttons").append('<button id= "' + favlist[i].name + '" type = "My Place" class = "btn btn-default" style="..." onclick= "alert(\'We need to change this\')" >' + favlist[i].name + '</button>' +
+                                '<button class="btn btn-danger" onclick="alert(\'Deleted everything on the computer. Brutal.\')">Remove</button><br/>');
+//                    <table style="width:300px">
+//					<tr>
+//                       <td>favlist.name</td>
+//                    </tr>
 					}
 				}
 			</script>
