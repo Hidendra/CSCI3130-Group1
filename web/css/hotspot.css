@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map-canvas {
+    height: 500px;
+}
+
+.gpsisoff {
+    background-image: url(https://24.media.tumblr.com/fc46d3f9c4148d71329df400a12c51c5/tumblr_n21c0w9Jze1s2nnoko1_250.jpg);
+    background-size: 100px 100px;
+    width: 100px;
+    height: 100px;
+}
+
+.gpsison {
+    background-image: url(https://24.media.tumblr.com/1e8e045d6429404e36f1a963af2a387b/tumblr_n21c9wGfcy1s2nnoko1_400.png);
+    background-size: 100px 100px;
+    width: 100px;
+    height: 100px;
+}

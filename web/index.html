@@ -6,24 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hotspot</title>
 
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="js/jquery-1.11.0.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true&drawing=true&visualization=true"></script>
-    <script src="hotspot.js"></script>
-
+    <script src="js/hotspot.js"></script>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #map-canvas {
-            height: 500px;
-        }
-    </style>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/hotspot.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,16 +37,64 @@
     </div>
 
     <div class="row" style="margin: 0 auto;">
-        <div id="map" class="hidden">
+      <div id="toshowbuttons" class="hidden">
+	<p style= "font-size:25px;text-align: center "> Click on a button to get information on your time spent there! </p>
+	
+     </div> 
+      <div id="map" class="hidden">
             <div id="map-canvas"></div>
-            <button id="watch" type="watch" class="btn btn-default" onclick="watchLocation()">Watch</button>
+			<!-- GPS button on the map page (date: 03/07)-->
+			<link rel="stylesheet" type="text/css" href="css/hotspot.css">
+			<script>
+                function myFunction(e)
+                {  
+                     if(e.className=="gpsison"){
+                         e.className="gpsisoff"; 
+                         e.innerHTML="OFF";
+						 clearLocation();
+                     }
+                     else if(e.className=="gpsisoff"){
+                         e.className="gpsison";
+                         e.innerHTML="ON";
+						 watchLocation();
+                     }
+                }
+
+		function myPlace()
+		{
+		   $("#map").hide();
+		   $("#toshowbuttons").removeClass("hidden");
+		   
+		}
+             </script>
+             <button class="gpsisoff" id="gpsToggle" onclick="myFunction(this)" ><b>OFF</b>		
+			<!--gps button ends-->
+			<!--button for important places-->
+			<button id="myplace" type="My Place" class="btn btn-default" onclick="myPlace()">My Place</button>
+			<!--trying to show elements in a table-->
+                 <div id="placesButton"></div>
+
+
+			<script>
+			    function showPlaceList(favlist)
+				{
+				    for(var i =0; i<favlist.length; i++){
+                        $("#toshowbuttons").append('<button id= "' + favlist[i].name + '" type = "My Place" class = "btn btn-default" style="..." onclick= "alert(\'We need to change this\')" >' + favlist[i].name + '</button>' +
+                                '<button class="btn btn-danger" onclick="alert(\'Deleted everything on the computer. Brutal.\')">Remove</button><br/>');
+//                    <table style="width:300px">
+//					<tr>
+//                       <td>favlist.name</td>
+//                    </tr>
+					}
+				}
+			</script>
+			<!--table ends-->
+			<!--My Place button ends-->
         </div>
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 </div>
 
 

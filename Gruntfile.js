@@ -9,30 +9,70 @@ module.exports = function(grunt) {
                 description: '<%= pkg.description %>',
                 version: '<%= pkg.version %>',
                 options: {
-                    paths: 'web',
+                    paths: [ 'server', 'web' ],
                     outdir: 'docs'
                 }
             }
        },
         uglify: {
-            compile: {
-                files: {
-                    'js/out.js': ['web/login.js']
-                }
+            javascript: {
+				expand: true,
+				cwd: 'web/js',
+				src: ['*.js', '!*.min.js'],
+				dest: 'web-dist/js'
             }
         },
+		cssmin: {
+			minify: {
+				expand: true,
+				cwd: 'web/css',
+				src: ['*.css', '!*.min.css'],
+				dest: 'web-dist/css'
+			}
+		},
+		copy: {
+			main: {
+				files: [
+					{
+						expand: true,
+						cwd: 'web',
+						src: '*.html',
+						dest: 'web-dist',
+						filter: function (f) {
+							return f.indexOf("SpecRunner") == -1;
+						}
+					},
+					{
+						expand: true,
+						cwd: 'web',
+						src: [ 'lib', 'fonts' ],
+						dest: 'web-dist'
+					}
+				]
+			}
+		},
+		jasmine: {
+			web: {
+				options: {
+					outfile: 'web/_SpecRunner.html',
+					template: 'web/SpecRunner.html'
+				}
+			}
+		},
         clean:
-            ['docs', 'js']
-
+            ['docs', 'web-dist']
 
     });
- 
+
     // Load the plugins
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
+	grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     // Default task(s).
-    grunt.registerTask('default', ['yuidoc', 'uglify']);
+    grunt.registerTask('default', ['jasmine', 'yuidoc', 'uglify', 'cssmin', 'copy']);
 
 };
