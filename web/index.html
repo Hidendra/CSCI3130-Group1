@@ -39,11 +39,24 @@
     <div class="row" style="margin: 0 auto;">
 
       <div id="toshowbuttons" class="hidden">
-	<p style= "font-size:25px;text-align: center "> Click on a button to get information on your time spent there! </p>
-          <div id="add">
-              <button class="btn btn-success" onclick="alert('This is where users will add things, one day!')">Add Place</button>
-          </div>
-
+	     <p style= "font-size:25px;text-align: center "> Click on a button to get information on your time spent there! </p>
+            <div id="add">
+                <button class="btn btn-success" onclick="alert('This is where users will add things, one day!')">Add Place</button>
+            </div>
+			<!--button to return to the map page-->
+            <div id = "quit">
+			     <button class="btn btn-success" onclick = "return()">Quit</button>
+				 <!--script function to return to the main page-->
+				 <script>
+				 function return()
+		        {
+		            $("#map").removeClass("hidden");
+		            $("#toshowbuttons").hide;
+		        }
+				</script>
+				 <!--function ends-->
+			</div>
+			<!--return ends-->
      </div> 
       <div id="map" class="hidden">
             <div id="map-canvas"></div>
