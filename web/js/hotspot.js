@@ -4,6 +4,25 @@ var sessionkey = null;
 var watchID = null;
 
 /**
+ * Gets the location of the spot via the mouse click 
+ * 
+ *
+ * @method clickingplace
+ */
+var clickingplace = function() {
+   ivar r=confirm("Add Location?");
+   if (r==true)
+   {
+       addingLocation();
+   }
+    else
+   {
+       return;
+   } 
+}
+
+
+/**
  * Attempts to login an existing user when the login/signin
  * button is clicked.
  *
