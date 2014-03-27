@@ -171,8 +171,7 @@ app.post('/places', function (req, res) {
         var requestLon = req.body.lon;
 
         points.find({
-            userid: userid,
-            "places.name": requestPlaceName
+            userid: userid
         }, function (err, docs) {
 
             if (docs.length == 0) {
@@ -184,6 +183,26 @@ app.post('/places', function (req, res) {
                         lon: parseFloat(requestLon)
                     }}}, { upsert: true}
                 );
+            }
+            else {
+                var found = false;
+                for (var k in docs.places){
+                    var value = docs.places[k];
+                    if (value.name == requestPlaceName){
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found){
+                    places.update(
+                        { user: userid },
+                        { $push: { places: { name: requestPlaceName,
+                            lat: parseFloat(requestLat),
+                            lon: parseFloat(requestLon)
+                        }}}, { upsert: true}
+                    );
+                }
+
             }
 
         });
