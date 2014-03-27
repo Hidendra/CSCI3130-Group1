@@ -359,9 +359,10 @@ var addingLocation = function(){
     $("#map").show();
     $("#toshowbuttons").hide();
     var latLng;
-    google.maps.event.addListener(map, "click", function (e) { 
+
+    google.maps.event.addListener(map, "click", function (event) { 
 	while(latLng==null){
-	    latLng = google.maps.LatLng(e.latLng.lat().toFixed(6), e.latLng.lng().toFixed(6)); 
+	    latLng = google.maps.LatLng(event.LatLng.lat().toFixed(6), event.LatLng.lng().toFixed(6)); 
         }
     });
     
