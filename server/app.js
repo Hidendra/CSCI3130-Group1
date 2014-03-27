@@ -17,6 +17,8 @@ var math = require('./math')();
 var db = require('monk')('127.0.0.1:27017/group1');
 var users = db.get('users');
 var points = db.get('points');
+var places = db.get('places');
+
 
 // Session handler
 var session = require('./session')(db);
