@@ -7,6 +7,25 @@ var watchID = null;
 var repositionMap = false;
 
 /**
+ * Gets the location of the spot via the mouse click 
+ * 
+ *
+ * @method clickingplace
+ */
+var clickingplace = function() {
+   ivar r=confirm("Add Location?");
+   if (r==true)
+   {
+       addingLocation();
+   }
+    else
+   {
+       return;
+   } 
+}
+
+
+/**
  * Attempts to login an existing user when the login/signin
  * button is clicked.
  *
@@ -306,3 +325,27 @@ var showPlaceList = function(data){
 			});
 		});
 };
+
+var clickLocation = function(){
+
+    google.maps.event.addListener(map, "click", function (e) { 
+        var latLng = google.maps.LatLng(e.latLng.lat().toFixed(6), e.latLng.lng().toFixed(6)); 
+    });
+    
+
+};
+ 
+var addingLoctaion = function(){
+
+    google.maps.event.addListener(map, "click", function (e) { 
+        var latLng = google.maps.LatLng(e.latLng.lat().toFixed(6), e.latLng.lng().toFixed(6)); 
+    });
+
+    var placename= prompt("Please enter the name of the location:","Location Name");
+
+    if (placename!=null){
+	//Send the name and location to the function of joel
+        	
+    }
+};
+    
