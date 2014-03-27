@@ -10,6 +10,9 @@ var sha1 = require('sha1');
 var app = express();
 app.use(express.bodyParser());
 
+// math
+var math = require('./math')();
+
 // connect to Mongo
 var db = require('monk')('127.0.0.1:27017/group1');
 var users = db.get('users');
@@ -115,11 +118,39 @@ app.post('/position', function (req, res) {
 			return;
 		}
 
-		points.insert({
-			userid: userid,
-			lat: parseFloat(req.body.lat),
-			lon: parseFloat(req.body.lon),
-			time: parseInt(new Date().getTime() / 1000)
+		var requestLat = req.body.lat;
+		var requestLon = req.body.lon;
+
+		// find their last position - if they had a last position then check that it was not too
+		// close to where they are currently
+		points.find({
+			userid: userid
+		}, {
+			limit: 1,
+			sort: {
+				time: -1
+			}
+		}, function (err, docs) {
+
+			if (docs.length != 0) {
+				var point = docs[0];
+
+				var dist = Math.abs(math.geodist(parseFloat(requestLat), parseFloat(requestLon), parseFloat(point.lat), parseFloat(point.lon)));
+				console.log("Point received; distance to last point = " + dist + "m");
+
+				if (dist > 10 && dist < 20) {
+					requestLat = point.lat;
+					requestLon = point.lon;
+				}
+			}
+
+			points.insert({
+				userid: userid,
+				lat: parseFloat(requestLat),
+				lon: parseFloat(requestLon),
+				time: parseInt(new Date().getTime() / 1000)
+			});
+
 		});
 	});
 });

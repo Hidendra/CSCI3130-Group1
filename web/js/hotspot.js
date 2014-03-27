@@ -3,6 +3,9 @@ var apiUrl = 'http://centi.cs.dal.ca:8001';
 var sessionkey = null;
 var watchID = null;
 
+// if the map should be repositioned next reload
+var repositionMap = false;
+
 /**
  * Attempts to login an existing user when the login/signin
  * button is clicked.
@@ -189,6 +192,9 @@ var clearLocation = function () {
 	alert("GPS is now OFF.");
 }
 
+/**
+ * Create the map on the page
+ */
 var createMap = function () {
 	var path = [];
 
@@ -216,10 +222,17 @@ var createMap = function () {
 
 	map.fitBounds(latLngBounds);
 
+	/**
+	 * Reload the map
+	 *
+	 * @param reposition if the map should be repositioned to fit all points
+	 */
 	var reloadMap = function() {
 		$.getJSON('http://centi.cs.dal.ca:8001/points/' + sessionkey, function (data) {
 			var lastPoint = null;
+			var lastLatLng = null;
 
+			var shouldReposition = (latLngBounds.length == 0 || repositionMap);
 			path = [];
 
 			data.forEach(function (v) {
@@ -227,21 +240,31 @@ var createMap = function () {
 				var delta = lastPoint == null ? 1 : v.time - lastPoint.time;
 
 				var latLng = new google.maps.LatLng(v.lat, v.lon);
+
 				path.push({
 					location: latLng,
 					weight: delta
 				});
+
 				mapPath.setData(path);
-				//latLngBounds.extend(latLng);
-				//map.fitBounds(latLngBounds);
+
 				google.maps.event.trigger(map, 'resize');
 				lastPoint = v;
+				lastLatLng = latLng;
 				marker.setPosition(latLng);
 			});
+
+			if (lastLatLng != null) {
+				if (!latLngBounds.contains(lastLatLng)) {
+					latLngBounds.extend(lastLatLng);
+					map.fitBounds(latLngBounds);
+				}
+			}
 		});
 	};
 
 	setInterval(reloadMap, 1000);
+	repositionMap = true;
 	reloadMap();
 };
 
