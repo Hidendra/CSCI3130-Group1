@@ -155,6 +155,36 @@ app.post('/position', function (req, res) {
 	});
 });
 
+app.post('/places', function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    session.findSession(req.body.key, function(userid) {
+        if (userid == null){
+            res.send(403);
+            return;
+        }
+
+        var requestPlaceName = req.body.placeName;
+        var requestLat = req.body.lat;
+        var requestLon = req.body.lon;
+
+
+        // find their last position - if they had a last position then check that it was not too
+        // close to where they are currently
+
+
+        places.update(
+            { user: userid },
+            { $push: { places: { name: requestPlaceName,
+                        lat: parseFloat(requestLat),
+                        lon: parseFloat(requestLon)
+            }}},{ upsert: true}
+        );
+
+
+    });
+});
+
 app.get('/points/:key', function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 

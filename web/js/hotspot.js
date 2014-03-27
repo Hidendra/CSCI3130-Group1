@@ -215,6 +215,23 @@ var clearLocation = function () {
 }
 
 /**
+ * adds a "favourite place" location for the user to the database
+ */
+
+var addLocation = function (nameIn, latIn, lonIn) {
+
+    $.post(apiUrl + '/places', {
+        key: sessionkey,
+        placeName: nameIn,
+        lat: latIn,
+        lon: lonIn
+    });
+
+    alert("Place added.");
+};
+
+
+/**
  * Create the map on the page
  */
 var createMap = function () {
