@@ -188,6 +188,7 @@ app.post('/places', function (req, res) {
                 var found = false;
                 for (var k in docs.places){
                     var value = docs.places[k];
+                    console.log(value.name);
                     if (value.name == requestPlaceName){
                         found = true;
                         break;
