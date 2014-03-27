@@ -171,7 +171,7 @@ app.post('/places', function (req, res) {
         var requestLon = req.body.lon;
 
         points.find({
-            userid: userid
+            user: userid
         }, function (err, docs) {
 
             if (docs.length == 0) {
