@@ -356,8 +356,8 @@ var clickLocation = function(){
  
 var addingLocation = function(){
  
-    $("#map").removeClass("hidden");
-    $("#toshowbuttons").hide;
+    $("#map").show();
+    $("#toshowbuttons").hide();
     var latLng;
     google.maps.event.addListener(map, "click", function (e) { 
 	while(latLng==null){
