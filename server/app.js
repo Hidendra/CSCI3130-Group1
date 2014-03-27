@@ -185,9 +185,10 @@ app.post('/places', function (req, res) {
                 );
             }
             else {
+                var doc = docs[0];
                 var found = false;
-                for (var k in docs.places){
-                    var value = docs.places[k];
+                for (var k in doc.places){
+                    var value = doc.places[k];
                     console.log(value.name);
                     if (value.name == requestPlaceName){
                         found = true;
