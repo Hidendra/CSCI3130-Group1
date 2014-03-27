@@ -358,16 +358,19 @@ var addingLocation = function(){
  
     $("#map").removeClass("hidden");
     $("#toshowbuttons").hide;
-
+    var latLng;
     google.maps.event.addListener(map, "click", function (e) { 
-        var latLng = google.maps.LatLng(e.latLng.lat().toFixed(6), e.latLng.lng().toFixed(6)); 
+	while(latLng==null){
+	    latLng = google.maps.LatLng(e.latLng.lat().toFixed(6), e.latLng.lng().toFixed(6)); 
+        }
     });
+    
+    if(latLng !=null){
+	var placename= prompt("Please enter the name of the location:","Location Name");
 
-    var placename= prompt("Please enter the name of the location:","Location Name");
-
-    if (placename!=null){
-	//Send the name and location to the function of joel
-        	
+	if (placename!=null){
+	    //Send the name and location to the function of joel
+        }	
     }
 };
     
