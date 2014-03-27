@@ -13,7 +13,7 @@ var repositionMap = false;
  * @method clickingplace
  */
 var clickingplace = function() {
-   ivar r=confirm("Add Location?");
+   var r=confirm("Add Location?");
    if (r==true)
    {
        addingLocation();
@@ -210,6 +210,23 @@ var clearLocation = function () {
 	navigator.geolocation.clearWatch(watchID);
 	alert("GPS is now OFF.");
 }
+
+/**
+ * adds a "favourite place" location for the user to the database
+ */
+
+var addLocation = function (nameIn, latIn, lonIn) {
+
+    $.post(apiUrl + '/places', {
+        key: sessionkey,
+        placeName: nameIn,
+        lat: latIn,
+        lon: lonIn
+    });
+
+    alert("Place added.");
+};
+
 
 /**
  * Create the map on the page
