@@ -355,7 +355,7 @@ var clickLocation = function(){
 
 };
  
-var addingLoctaion = function(){
+var addingLocation = function(){
 
     google.maps.event.addListener(map, "click", function (e) { 
         var latLng = google.maps.LatLng(e.latLng.lat().toFixed(6), e.latLng.lng().toFixed(6)); 
