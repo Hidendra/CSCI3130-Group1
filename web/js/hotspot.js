@@ -16,7 +16,9 @@ var clickingplace = function() {
    var r=confirm("Add Location?");
    if (r==true)
    {
-       //return();
+       $("#map").removeClass("hidden");
+       $("#toshowbuttons").hide;
+		     
        addingLocation();
    }
     else
