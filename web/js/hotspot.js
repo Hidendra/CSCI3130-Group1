@@ -16,6 +16,7 @@ var clickingplace = function() {
    var r=confirm("Add Location?");
    if (r==true)
    {
+       return();
        addingLocation();
    }
     else
