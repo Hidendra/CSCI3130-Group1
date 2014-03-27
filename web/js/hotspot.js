@@ -13,7 +13,7 @@ var repositionMap = false;
  * @method clickingplace
  */
 var clickingplace = function() {
-   ivar r=confirm("Add Location?");
+   var r=confirm("Add Location?");
    if (r==true)
    {
        addingLocation();
@@ -22,7 +22,7 @@ var clickingplace = function() {
    {
        return;
    } 
-}
+};
 
 
 /**
