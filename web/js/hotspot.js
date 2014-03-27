@@ -358,10 +358,11 @@ var addingLocation = function(){
  
     $("#map").show();
     $("#toshowbuttons").hide();
-    var latLng;
-    google.maps.event.addListener(map, "click", function (e) { 
-	while(latLng==null){
-	    latLng = google.maps.LatLng(e.latLng.lat().toFixed(6), e.latLng.lng().toFixed(6)); 
+    var Latlng;
+
+    google.maps.event.addListener(map, 'dblclick', function (event) { 
+	while(Latlng==null){
+	   Latlng = event.latLng(); 
         }
     });
     
