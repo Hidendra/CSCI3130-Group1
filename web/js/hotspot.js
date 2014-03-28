@@ -372,6 +372,9 @@ var addingLocation = function(){
 	    addLocation(placename, latLng.lat(), latLng.lng());
         }
     }	
+    $("#map").hide();
+    $("#toshowbuttons").show(); 
+   
   });
 };
     
