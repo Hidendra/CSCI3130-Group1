@@ -369,7 +369,7 @@ var addingLocation = function(){
 	var placename= prompt("Please enter the name of the location:","Location Name");
 
 	if (placename!=null){
-	    addLocation(placename, latLng.coords.latitude, latLng.coords.longitude);
+	    addLocation(placename, latLng.lat(), latLng.lng());
         }
     }	
   });
