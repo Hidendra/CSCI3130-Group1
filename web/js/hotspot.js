@@ -346,12 +346,19 @@ var showPlaceList = function(data){
 		});
 };
 
-var clickLocation = function(){
-
-    google.maps.event.addListener(map, "click", function (e) { 
-        var latLng = google.maps.LatLng(e.latLng.lat().toFixed(6), e.latLng.lng().toFixed(6)); 
-    });
+var clickMapPlaceMarker = function(){
     
+    google.maps.event.addListener(map,'click', function(event){
+        placeMarker(event.latLng);
+    });
+}
+
+var placeMarker = function(location){
+
+    var marker = new google.maps.Marker({
+        position: location
+        map: map
+    });
 
 };
  
