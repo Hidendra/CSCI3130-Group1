@@ -359,20 +359,19 @@ var addingLocation = function(){
      
     $("#map").show();
     $("#toshowbuttons").hide();
-    var LatLng;
+    var latLng;
 
     google.maps.event.addListener(map, 'dblclick', function (event) { 
-	while(Latlng==null){
-	   Latlng = event.latLng(); 
-        }
-    });
-    
+	
+	   latLng = event.latLng(); 
+
     if(latLng !=null){
 	var placename= prompt("Please enter the name of the location:","Location Name");
 
 	if (placename!=null){
 	    addLocation(placename, latLng.coords.latitude, latLng.coords.longitude);
-        }	
-    }
+        }
+    }	
+  });
 };
     
