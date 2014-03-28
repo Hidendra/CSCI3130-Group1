@@ -2,6 +2,7 @@ var apiUrl = 'http://centi.cs.dal.ca:8001';
 //var apiUrl = 'http://10.10.1.7:8001';
 var sessionkey = null;
 var watchID = null;
+var map = null;
 
 // if the map should be repositioned next reload
 var repositionMap = false;
@@ -241,7 +242,7 @@ var createMap = function () {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
-	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	 map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	var latLngBounds = new google.maps.LatLngBounds();
 
 	for (var i = 0; i < path.length; i++) {
@@ -355,10 +356,10 @@ var clickLocation = function(){
 };
  
 var addingLocation = function(){
- 
+     
     $("#map").show();
     $("#toshowbuttons").hide();
-    var Latlng;
+    var LatLng;
 
     google.maps.event.addListener(map, 'dblclick', function (event) { 
 	while(Latlng==null){
@@ -370,7 +371,7 @@ var addingLocation = function(){
 	var placename= prompt("Please enter the name of the location:","Location Name");
 
 	if (placename!=null){
-	    //Send the name and location to the function of joel
+	    addLocation(placename, latLng.coords.latitude, latLng.coords.longitude);
         }	
     }
 };
