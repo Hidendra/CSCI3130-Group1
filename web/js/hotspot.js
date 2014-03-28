@@ -363,7 +363,7 @@ var addingLocation = function(){
 
     google.maps.event.addListener(map, 'dblclick', function (event) { 
 	
-	   latLng = event.latLng(); 
+	   latLng = event.latLng; 
 
     if(latLng !=null){
 	var placename= prompt("Please enter the name of the location:","Location Name");
