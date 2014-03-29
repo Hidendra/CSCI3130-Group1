@@ -364,7 +364,7 @@ var addingLocation = function(){
     $("#toshowbuttons").hide();
     var latLng;
 
-    google.maps.event.addListener(map, 'dblclick', function (event) { 
+    google.maps.event.addListener(map, 'click', function (event) { 
 	
 	   latLng = event.latLng; 
 
