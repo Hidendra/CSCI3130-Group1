@@ -155,6 +155,7 @@ app.post('/position', function (req, res) {
 
         });
     });
+    res.json({});
 });
 
 app.post('/places', function (req, res) {
