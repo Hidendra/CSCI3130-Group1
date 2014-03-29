@@ -219,14 +219,16 @@ var clearLocation = function () {
  */
 
 var addLocation = function (nameIn, latIn, lonIn) {
-
     $.post(apiUrl + '/places', {
         key: sessionkey,
         placeName: nameIn,
         lat: latIn,
         lon: lonIn
+    }, function (data) {
+	updatePlaces();
     });
 
+    setTimeout(updatePlaces, 500);
     alert("Place added.");
 };
 
@@ -316,12 +318,15 @@ var myplace = function(){
 	showPlaceList()
 };
 
-var showPlaceList = function(data){
-    //the pathname has not been made yet
-    $.getJSON('http://centi.cs.dal.ca:8001/points/' + sessionkey, function (data) {
-			var favplace = null;
+var quitPlaces = function() {
+    $("#map").show();
+    $("#toshowbuttons").addClass("hidden");
+};
 
-			favlist = [];
+var updatePlaces = function() {
+    //the pathname has not been made yet
+    $.getJSON('http://centi.cs.dal.ca:8001/places/' + sessionkey, function (data) {
+			var favlist = [];
 
 			data.forEach(function (v) {
 			    //longitude and latitude
@@ -332,17 +337,8 @@ var showPlaceList = function(data){
 					location: latLng,
 					name: placename
 				});
-				//method that shows names of places in a list
-				
-				/*
-				mapPath.setData(path);
-				latLngBounds.extend(latLng);
-				map.fitBounds(latLngBounds);
-				google.maps.event.trigger(map, 'resize');
-				lastPoint = v;
-				marker.setPosition(latLng);
-				*/
 			});
+	showPlaceList(favlist);
 		});
 };
 
@@ -356,7 +352,7 @@ var clickMapPlaceMarker = function(){
 var placeMarker = function(location){
 
     var marker = new google.maps.Marker({
-        position: location
+        position: location,
         map: map
     });
 
@@ -382,6 +378,6 @@ var addingLocation = function(){
     $("#map").hide();
     $("#toshowbuttons").show(); 
    
-  });
+  });  
+
 };
-    

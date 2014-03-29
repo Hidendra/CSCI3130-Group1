@@ -43,19 +43,12 @@
             <div id="add">
                 <button class="btn btn-success" onclick="clickingplace()">Add Place</button>
             </div>
+
+	    <div id="placebuttons"></div>
+
 			<!--button to return to the map page-->
             <div id = "quit">
-			     <button class="btn btn-success" onclick="return()">Quit</button>
-				 <!--script function to return to the main page-->
-				 <script>
-				 function return()
-		        {
-		            //$("#map").removeClass("hidden");
-					$("#map").show();
-		            $("#toshowbuttons").hide;
-		        }
-				</script>
-				 <!--function ends-->
+	      <button class="btn btn-success" onclick="quitPlaces()">Quit</button>
 			</div>
 			<!--return ends-->
      </div> 
@@ -81,9 +74,9 @@
 
 		function myPlace()
 		{
+		   updatePlaces();
 		   $("#map").hide();
 		   $("#toshowbuttons").removeClass("hidden");
-		   
 		}
              </script>
              <button class="gpsisoff" id="gpsToggle" onclick="myFunction(this)" ><b>OFF</b>		
@@ -97,8 +90,9 @@
 			<script>
 			    function showPlaceList(favlist)
 				{
+			$("#placebuttons").empty();    
 				    for(var i =0; i<favlist.length; i++){
-                        $("#toshowbuttons").append('<button id= "' + favlist[i].name + '" type = "My Place" class = "btn btn-default" style="..." onclick= "alert(\'We need to change this\')" >' + favlist[i].name + '</button>' +
+                        $("#placebuttons").append('<button id= "' + favlist[i].name + '" type = "My Place" class = "btn btn-default" style="..." onclick= "alert(\'We need to change this\')" >' + favlist[i].name + '</button>' +
                                 '<button class="btn btn-danger" onclick="alert(\'Deleted everything on the computer. Brutal.\')">Remove</button><br/>');
 //                    <table style="width:300px">
 //					<tr>
