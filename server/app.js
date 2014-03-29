@@ -212,6 +212,24 @@ app.get('/points/:key', function (req, res) {
     });
 });
 
+app.get('/places/:key', function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    session.findSession(req.params.key, function (userid) {
+        if (userid == null) {
+            res.send(403);
+            return;
+        }
+
+        places.findOne({
+            user: userid
+        }, function (err, docs) {
+            res.json(docs.places);
+        });
+    });
+});
+
+
 app.listen(8001);
 
 console.log('Server running at http://127.0.0.1:8001/');
