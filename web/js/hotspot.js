@@ -235,8 +235,8 @@ var addLocation = function (nameIn, latIn, lonIn) {
 var removePlace = function (place) {
     $.ajax({
         url: apiUrl + '/places',
-        type: 'DELETE',
-        data: { key : sessionkey, placeName : place },
+        type: 'POST',
+        data: { _method: 'DELETE', key : sessionkey, placeName : place },
         success : function (){
             $("#" + place).remove();
         }
