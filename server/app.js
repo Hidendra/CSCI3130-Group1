@@ -245,7 +245,7 @@ app.get('/places/:key', function (req, res) {
         places.findOne({
             user: userid
         }, function (err, docs) {
-            if (docs.places == null){
+            if (docs == null){
                 res.json([]);
             }
             else {
