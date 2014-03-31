@@ -190,7 +190,7 @@ app.post('/places', function (req, res) {
     });
 });
 
-app.del('/places', function (req, res) {
+app.delete('/places', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     session.findSession(req.body.key, function (userid) {
