@@ -358,13 +358,6 @@ var updatePlaces = function() {
 		});
 };
 
-var clickMapPlaceMarker = function(){
-    
-    google.maps.event.addListener(map,'click', function(event){
-        placeMarker(event.latLng);
-    });
-}
-
 var placeMarker = function(location){
 
     var marker = new google.maps.Marker({
@@ -373,6 +366,20 @@ var placeMarker = function(location){
     });
 
 };
+
+var showPlace = function(lat, lng){
+    
+    $("#map").show();
+    $("#toshowbuttons").hide();
+
+    
+    var MapOptions = function(){ 
+    	center:  new google.maps.LatLng(lat, lng)
+    	zoom: 15; 
+    }
+    
+    google.maps.Map(document.getElementById('map-canvas'), MapOptions); 
+}
  
 var addingLocation = function(){
      
