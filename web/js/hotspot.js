@@ -232,6 +232,17 @@ var addLocation = function (nameIn, latIn, lonIn) {
     alert("Place added.");
 };
 
+var removePlace = function (place) {
+    $.ajax({
+        url: apiUrl + '/places',
+        type: 'DELETE',
+        data: { key : sessionkey, placeName : place },
+        success : function (){
+            $("#" + place).remove();
+        }
+    })
+};
+
 
 /**
  * Create the map on the page
