@@ -95,7 +95,7 @@
 				{
 			$("#placebuttons").empty();    
 				    for(var i =0; i<favlist.length; i++){
-                        $("#placebuttons").append('<button id= "' + favlist[i].name + '" type = "My Place" class = "btn btn-default" style="..." onclick= "alert(\'We need to change this\')" >' + favlist[i].name + '</button>' +
+                        $("#placebuttons").append('<button id= "' + favlist[i].name + '" type = "My Place" class = "btn btn-default" style="..." onclick= "showPlace(favlist[i].lat, favlist.lng)" >' + favlist[i].name + '</button>' +
                                 '<button class="btn btn-danger" onclick="alert(\'Deleted everything on the computer. Brutal.\')">Remove</button><br/>');
 //                    <table style="width:300px">
 //					<tr>
