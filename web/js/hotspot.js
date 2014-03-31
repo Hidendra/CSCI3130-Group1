@@ -233,14 +233,14 @@ var addLocation = function (nameIn, latIn, lonIn) {
 };
 
 var removePlace = function (place) {
-
-    $.post(apiUrl + '/deleteplace', {
-        key: sessionkey,
-        placeName: place,
-    }, function (data) {
-        $("#" + place).remove();
-    });
-
+    $.ajax({
+        url: apiUrl + '/places',
+        type: 'POST',
+        data: { _method: 'DELETE', key : sessionkey, placeName : place },
+        success : function (){
+            $("#" + place).remove();
+        }
+    })
 };
 
 
@@ -372,8 +372,8 @@ var showPlace = function(lat, lng){
     $("#map").show();
     $("#toshowbuttons").hide();
 
-    alert("YO");
-/*
+  
+
     var MapOptions = function(){ 
     	center:  new google.maps.LatLng(lat, lng)
     	zoom: 15; 
