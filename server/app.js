@@ -190,6 +190,26 @@ app.post('/places', function (req, res) {
     });
 });
 
+app.delete('/places', function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    session.findSession(req.body.key, function (userid) {
+        if (userid == null) {
+            res.send(403);
+            return;
+        }
+
+        var requestPlaceName = req.body.placeName;
+
+        places.update(
+            { user: userid },
+            { $pull: { places : { name : requestPlaceName } } }
+        );
+
+    });
+});
+
+
 app.get('/points/:key', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
