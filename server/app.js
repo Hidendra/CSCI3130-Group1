@@ -245,7 +245,12 @@ app.get('/places/:key', function (req, res) {
         places.findOne({
             user: userid
         }, function (err, docs) {
-            res.json(docs.places);
+            if (docs == null){
+                res.json([]);
+            }
+            else {
+                res.json(docs.places);
+            }
         });
     });
 });
