@@ -207,6 +207,8 @@ app.delete('/places', function (req, res) {
         );
 
     });
+    res.json({});
+    res.end();
 });
 
 
