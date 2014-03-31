@@ -235,7 +235,7 @@ var addLocation = function (nameIn, latIn, lonIn) {
 var removePlace = function (place) {
 
     var areYouSure = confirm("This will delete the place forever. You sure?");
-    if (areYouSure != null) {
+    if (areYouSure === true) {
         $.post(apiUrl + '/deleteplace', {
             key: sessionkey,
             placeName: place,
@@ -376,12 +376,8 @@ var showPlace = function(lat, lng){
 
     alert("YO");
 
-    var MapOptions = function(){ 
-    	center:  new google.maps.LatLng(lat, lng)
-    	zoom: 15; 
-    }
     
-    google.maps.Map(document.getElementById('map-canvas'), MapOptions); 
+    map.panTo(new google.maps.LatLng(lat, lng));
 };
  
 var addingLocation = function(){
