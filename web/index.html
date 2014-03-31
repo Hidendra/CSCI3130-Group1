@@ -85,7 +85,7 @@
              <button class="gpsisoff" id="gpsToggle" onclick="myFunction(this)" ><b>OFF</b>		
 			<!--gps button ends-->
 			<!--button for important places-->
-			<button id="myplace" class="btn btn-default" onclick="myPlace()">My Places</button>
+			<button id="myplace" class="myplace" onclick="myPlace()"><b>My Places</b></button>
 			<!--trying to show elements in a table-->
 
 
@@ -95,7 +95,7 @@
 				{
 			$("#placebuttons").empty();    
 				    for(var i =0; i<favlist.length; i++){
-                        $("#placebuttons").append('<div id= "' + favlist[i].name + '" ><button type = "My Place" class = "btn btn-default" style="..." onclick= "showPlace('+favlist[i].lat+', '+favlist[i].lon+')" >' + favlist[i].name + '</button>' +
+                        $("#placebuttons").append('<div id= "' + favlist[i].name.replace(' ', '-') + '" ><button type = "My Place" class = "btn btn-default" style="..." onclick= "showPlace('+favlist[i].lat+', '+favlist[i].lon+')" >' + favlist[i].name + '</button>' +
                                 '<button class="btn btn-danger" onclick="removePlace(\'' + favlist[i].name + '\')">Remove</button><br/></div>');
 
 					}
