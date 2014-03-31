@@ -377,7 +377,7 @@ var showPlace = function(lat, lng){
     alert("YO");
 
     
-    google.maps.Map.panTo(new google.maps.LatLng(lat, lng));
+    map.panTo(new google.maps.LatLng(lat, lng));
 };
  
 var addingLocation = function(){
