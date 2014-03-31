@@ -379,7 +379,7 @@ var showPlace = function(lat, lng){
     	zoom: 15; 
     }
     
-    google.maps.Map(document.getElementById('map-canvas'), MapOptions); */
+    google.maps.Map(document.getElementById('map-canvas'), MapOptions); 
 };
  
 var addingLocation = function(){
