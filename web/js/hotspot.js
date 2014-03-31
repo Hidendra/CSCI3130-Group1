@@ -255,6 +255,8 @@ var createMap = function () {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
+	updatePlaces();
+
 	 map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	var latLngBounds = new google.maps.LatLngBounds();
 
@@ -348,6 +350,9 @@ var updatePlaces = function() {
 					location: latLng,
 					name: placename
 				});
+			
+			placeMarker(latLng);
+			
 			});
 	showPlaceList(favlist);
 		});
