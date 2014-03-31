@@ -235,7 +235,7 @@ var addLocation = function (nameIn, latIn, lonIn) {
 var removePlace = function (place) {
 
     var areYouSure = confirm("This will delete the place forever. You sure?");
-    if (areYouSure != null) {
+    if (areYouSure === true) {
         $.post(apiUrl + '/deleteplace', {
             key: sessionkey,
             placeName: place,
