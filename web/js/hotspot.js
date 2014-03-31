@@ -372,13 +372,14 @@ var showPlace = function(lat, lng){
     $("#map").show();
     $("#toshowbuttons").hide();
 
-    
+    alert("YO");
+/*
     var MapOptions = function(){ 
     	center:  new google.maps.LatLng(lat, lng)
     	zoom: 15; 
     }
     
-    google.maps.Map(document.getElementById('map-canvas'), MapOptions); 
+    google.maps.Map(document.getElementById('map-canvas'), MapOptions); */
 };
  
 var addingLocation = function(){
