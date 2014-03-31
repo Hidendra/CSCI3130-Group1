@@ -2045,6 +2045,8 @@ fieldset[disabled] .btn {
   color: #333;
   background-color: #ebebeb;
   border-color: #adadad;
+  /*test*/
+  /*width: 100px;*/
 }
 .btn-default:active,
 .btn-default.active,
@@ -2118,6 +2120,7 @@ fieldset[disabled] .btn-primary.active {
   color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
+  width: 150px;
 }
 .btn-success:hover,
 .btn-success:focus,
