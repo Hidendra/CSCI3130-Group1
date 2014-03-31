@@ -240,7 +240,7 @@ var removePlace = function (place) {
             key: sessionkey,
             placeName: place,
         }, function (data) {
-            $("#" + place).remove();
+            $("#" + place.replace(' ', '-')).remove();
         });
     }
 };
