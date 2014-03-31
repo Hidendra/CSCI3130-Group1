@@ -234,13 +234,15 @@ var addLocation = function (nameIn, latIn, lonIn) {
 
 var removePlace = function (place) {
 
-    $.post(apiUrl + '/deleteplace', {
-        key: sessionkey,
-        placeName: place,
-    }, function (data) {
-        $("#" + place).remove();
-    });
-
+    var areYouSure = confirm("This will delete the place forever. You sure?");
+    if (areYouSure != null) {
+        $.post(apiUrl + '/deleteplace', {
+            key: sessionkey,
+            placeName: place,
+        }, function (data) {
+            $("#" + place).remove();
+        });
+    }
 };
 
 
