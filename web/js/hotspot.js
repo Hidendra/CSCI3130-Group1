@@ -337,6 +337,9 @@ var updatePlaces = function() {
 					location: latLng,
 					name: placename
 				});
+			
+			placeMarker(latLng);
+			
 			});
 	showPlaceList(favlist);
 		});
