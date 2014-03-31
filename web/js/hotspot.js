@@ -375,7 +375,7 @@ var showPlace = function(lat, lng){
     $("#toshowbuttons").hide();
 
     alert("YO");
-/*
+
     var MapOptions = function(){ 
     	center:  new google.maps.LatLng(lat, lng)
     	zoom: 15; 
