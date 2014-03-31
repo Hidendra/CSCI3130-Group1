@@ -243,6 +243,8 @@ var createMap = function () {
 		zoom: 16,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
+:
+	updatePlaces();
 
 	 map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	var latLngBounds = new google.maps.LatLngBounds();
