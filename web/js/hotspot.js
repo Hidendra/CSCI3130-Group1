@@ -233,14 +233,14 @@ var addLocation = function (nameIn, latIn, lonIn) {
 };
 
 var removePlace = function (place) {
-    $.ajax({
-        url: apiUrl + '/places',
-        type: 'POST',
-        data: { _method: 'DELETE', key : sessionkey, placeName : place },
-        success : function (){
-            $("#" + place).remove();
-        }
-    })
+
+    $.post(apiUrl + '/deleteplace', {
+        key: sessionkey,
+        placeName: place,
+    }, function (data) {
+        $("#" + place).remove();
+    });
+
 };
 
 
