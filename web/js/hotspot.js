@@ -368,14 +368,17 @@ var updatePlaces = function() {
 
 
 var placeMarker = function(name, location){
+	if (name in markers) {
+		markers[name].setPosition(location);
+	} else {
+		var marker = new google.maps.Marker({
+			position: location,
+			map: map,
+			title: name
+		});
 
-    var marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        title: name 
-    });
-     
-    markers[name]=marker;
+		markers[name]=marker;
+	}
 };
 
 var removeMarker = function(name){
@@ -384,7 +387,7 @@ var removeMarker = function(name){
     delete markers[name];
     
 
-}
+};
 
 
 
