@@ -378,6 +378,8 @@ var showPlace = function(lat, lng){
 
     
     map.panTo(new google.maps.LatLng(lat, lng));
+    google.maps.event.trigger(map,'resize');
+
 };
  
 var addingLocation = function(){
