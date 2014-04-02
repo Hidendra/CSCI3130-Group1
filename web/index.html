@@ -94,6 +94,7 @@
 				{
 			$("#placebuttons").empty();    
 				    for(var i =0; i<favlist.length; i++){
+			console.log(favlist[i].lat + favlist[i].lon);
                         $("#placebuttons").append('<div id= "' + favlist[i].name.replace(' ', '-') + '" ><button type = "My Place" class = "btn btn-default" style="..." onclick= "showPlace('+favlist[i].lat+', '+favlist[i].lon+')" >' + favlist[i].name + '</button>' +
                                 '<button class="btn btn-danger" onclick="removePlace(\'' + favlist[i].name + '\')">Remove</button><br/></div>');
 
