@@ -315,7 +315,11 @@ var createMap = function () {
 					weight: delta
 				});
 
-				mapPath.setData(path);
+				if (usePolyLine) {
+					mapPath.setPath(path);
+				} else {
+					mapPath.setData(path);
+				}
 
 				google.maps.event.trigger(map, 'resize');
 				lastPoint = v;
