@@ -366,7 +366,7 @@ var placeMarker = function(location, name){
     var marker = new google.maps.Marker({
         position: location,
         map: map,
-        title: 'place'
+        title: "place"
     });
 
 };
