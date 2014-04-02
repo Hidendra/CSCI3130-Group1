@@ -350,7 +350,9 @@ var updatePlaces = function() {
                 var placename = v.name;
 				favlist.push({
 					location: latLng,
-					name: placename
+					name: placename,
+					lat: v.lat,
+					lon: v.lon
 				});
 			
 			placeMarker(latLng);
