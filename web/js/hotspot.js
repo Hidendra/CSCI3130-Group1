@@ -374,11 +374,9 @@ var showPlace = function(lat, lng){
     $("#map").show();
     $("#toshowbuttons").hide();
 
-    alert("YO");
-
-    
-    map.panTo(new google.maps.LatLng(lat, lng));
-    google.maps.event.trigger(map,'resize');
+   
+    map.panTo(new google.maps.LatLng(lat,lng));
+//    google.maps.event.trigger(map,'resize');
 
 };
  
