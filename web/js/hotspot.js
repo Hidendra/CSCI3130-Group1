@@ -334,7 +334,7 @@ var myplace = function(){
 
 var quitPlaces = function() {
     $("#map").show();
-    $("#toshowbuttons").addClass("hidden");
+    $("#toshowbuttons").hide();
 };
 
 var updatePlaces = function() {
