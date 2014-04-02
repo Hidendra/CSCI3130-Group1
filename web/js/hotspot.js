@@ -3,6 +3,8 @@ var apiUrl = 'http://centi.cs.dal.ca:8001';
 var sessionkey = null;
 var watchID = null;
 var map = null;
+var markers = {};
+
 
 // if the map should be repositioned next reload
 var repositionMap = false;
@@ -355,21 +357,32 @@ var updatePlaces = function() {
 					lon: v.lon
 				});
 			
-			placeMarker(latLng);
+			placeMarker(name, latLng);
 			
 			});
 	showPlaceList(favlist);
 		});
 };
 
-var placeMarker = function(location){
+var placeMarker = function(name,location){
 
     var marker = new google.maps.Marker({
         position: location,
         map: map
     });
-
+     
+    markers[name]=marker;
 };
+
+var removeMarker = function(name){
+      
+    markers[name].setMap(null);
+    delete markers[name];
+    
+
+}
+
+
 
 var showPlace = function(lat, lng){
     
