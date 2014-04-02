@@ -268,10 +268,21 @@ var createMap = function () {
 		latLngBounds.extend(path[i]);
 	}
 
-	var mapPath = new google.maps.visualization.HeatmapLayer({
-		data: path,
-		map: map
-	});
+	var usePolyLine = true;
+
+	var mapPath;
+
+	if (usePolyLine) {
+		mapPath = new google.maps.Polyline({
+			path: path,
+			map: map
+		});
+	} else { // heatmap
+		mapPath = new google.maps.visualization.HeatmapLayer({
+			data: path,
+			map: map
+		});
+	}
 
 	var marker = new google.maps.Marker({
 		map: map,
