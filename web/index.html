@@ -38,7 +38,7 @@
 
     <div class="row" style="margin: 0 auto;">
 
-      <div id="toshowbuttons" class="hidden">
+      <div id="toshowbuttons" style="display:none">
 	     <p style= "font-size:25px;text-align: center "> Click on a button to see it on the map!</p>
             <div id="add">
                 <button class="btn btn-success" onclick="clickingplace()">Add Place</button>
@@ -78,7 +78,7 @@
 		{
 		   updatePlaces();
 		   $("#map").hide();
-		   $("#toshowbuttons").removeClass("hidden");
+		   $("#toshowbuttons").show();
 		}
              </script>
              <button class="gpsisoff" id="gpsToggle" onclick="myFunction(this)" ><b>OFF</b>		

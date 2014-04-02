@@ -19,8 +19,7 @@ var clickingplace = function() {
    var r=confirm("Add Location?");
    if (r==true)
    {
-      
-		     
+      		     
        addingLocation();
    }
     else
@@ -337,7 +336,7 @@ var myplace = function(){
 
 var quitPlaces = function() {
     $("#map").show();
-    $("#toshowbuttons").addClass("hidden");
+    $("#toshowbuttons").hide();
 };
 
 var updatePlaces = function() {
@@ -357,18 +356,22 @@ var updatePlaces = function() {
 					lon: v.lon
 				});
 			
-			placeMarker(name, latLng);
+
+			    placeMarker(placename, latLng);
+
 			
 			});
 	showPlaceList(favlist);
 		});
 };
 
-var placeMarker = function(name,location){
+
+var placeMarker = function(name, location){
 
     var marker = new google.maps.Marker({
         position: location,
-        map: map
+        map: map,
+        title: name 
     });
      
     markers[name]=marker;
