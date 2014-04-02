@@ -275,7 +275,10 @@ var createMap = function () {
 	if (usePolyLine) {
 		mapPath = new google.maps.Polyline({
 			path: path,
-			map: map
+			map: map,
+			strokeColor: '#FF0000',
+			strokeOpacity: 1.0,
+			strokeWeight: 2
 		});
 	} else { // heatmap
 		mapPath = new google.maps.visualization.HeatmapLayer({
