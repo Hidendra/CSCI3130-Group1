@@ -236,10 +236,11 @@ var addLocation = function (nameIn, latIn, lonIn) {
 var removePlace = function (place) {
 
     var areYouSure = confirm("This will delete the place forever. You sure?");
+    removeMarker(place);
     if (areYouSure === true) {
         $.post(apiUrl + '/deleteplace', {
             key: sessionkey,
-            placeName: place,
+            placeName: place
         }, function (data) {
             $("#" + place.replace(' ', '-')).remove();
         });
