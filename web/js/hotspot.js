@@ -310,14 +310,14 @@ var createMap = function () {
 
 				var latLng = new google.maps.LatLng(v.lat, v.lon);
 
-				path.push({
-					location: latLng,
-					weight: delta
-				});
-
 				if (usePolyLine) {
+					path.push(latLng);
 					mapPath.setPath(path);
 				} else {
+					path.push({
+						location: latLng,
+						weight: delta
+					});
 					mapPath.setData(path);
 				}
 
