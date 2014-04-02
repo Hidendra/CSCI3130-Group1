@@ -17,8 +17,7 @@ var clickingplace = function() {
    var r=confirm("Add Location?");
    if (r==true)
    {
-      
-		     
+      		     
        addingLocation();
    }
     else
@@ -355,18 +354,19 @@ var updatePlaces = function() {
 					lon: v.lon
 				});
 			
-			placeMarker(latLng);
+			    placeMarker(latLng, name);
 			
 			});
 	showPlaceList(favlist);
 		});
 };
 
-var placeMarker = function(location){
+var placeMarker = function(location, name){
 
     var marker = new google.maps.Marker({
         position: location,
-        map: map
+        map: map,
+        title: 'place'
     });
 
 };
