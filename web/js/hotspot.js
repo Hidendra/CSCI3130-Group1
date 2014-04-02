@@ -354,19 +354,19 @@ var updatePlaces = function() {
 					lon: v.lon
 				});
 			
-			    placeMarker(latLng, name);
+			    placeMarker(placename, latLng);
 			
 			});
 	showPlaceList(favlist);
 		});
 };
 
-var placeMarker = function(location, name){
+var placeMarker = function(name, location){
 
     var marker = new google.maps.Marker({
         position: location,
         map: map,
-        title: name
+        title: name 
     });
 
 };
