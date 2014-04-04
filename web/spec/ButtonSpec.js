@@ -5,7 +5,7 @@ beforeEach(function() {
 
 describe("Verify GPS toggler", function() {
 	beforeEach(function() {
-	completeLogin( { key: 'asd21414ead' } );
+		completeLogin( { key: 'asd21414ead' } );
 	});
 
 	it('tries to watch position', function (){

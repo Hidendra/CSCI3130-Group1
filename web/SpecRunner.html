@@ -18,15 +18,18 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/hotspot.css" rel="stylesheet">
 
     <!-- include spec files here... -->
     <script type="text/javascript" src="spec/LoginSpec.js"></script>
     <script type="text/javascript" src="spec/RegisterSpec.js"></script>
     <script type="text/javascript" src="spec/ButtonSpec.js"></script>
+    <script type="text/javascript" src="spec/PlacesSpec.js"></script>
 
 </head>
 
 <body>
+
 <div class="container-fluid" style="margin: 0 auto; width: 100%; padding: 0;">
 
     <div class="row col-xs-offset-1">
@@ -41,27 +44,72 @@
     </div>
 
     <div class="row" style="margin: 0 auto;">
+
+        <div id="toshowbuttons" style="display:none">
+            <p style= "font-size:25px;text-align: center "> Click on a button to see it on the map!</p>
+            <div id="add">
+                <button class="btn btn-success" id="addplace" onclick="clickingplace()">Add Place</button>
+            </div>
+
+            <div id="placebuttons"></div>
+
+            <!--button to return to the map page-->
+            <div id = "quit">
+                <button class="btn btn-success" id="quitplaces" onclick="quitPlaces()">Quit</button>
+            </div>
+            <!--return ends-->
+        </div>
         <div id="map" class="hidden">
             <div id="map-canvas"></div>
-			<!-- GPS button on the map page (date: 03/07)-->
-			<link rel="stylesheet" type="text/css" href="testforoffbutton.css">
-			<script>
+            <!-- GPS button on the map page (date: 03/07)-->
+            <script>
+                function marker(){
+                    clickMapPlaceMarker();
+                }
+
                 function myFunction(e)
                 {
-                     if(e.className=="gpsison"){
-                         e.className="gpsisoff";
-                         e.innerHTML="OFF";
-						 clearLocation();
-                     }
-                     else if(e.className=="gpsisoff"){
-                         e.className="gpsison";
-                         e.innerHTML="ON";
-						 watchLocation();
-                     }
+                    if(e.className=="gpsison"){
+                        e.className="gpsisoff";
+                        e.innerHTML="OFF";
+                        clearLocation();
+                    }
+                    else if(e.className=="gpsisoff"){
+                        e.className="gpsison";
+                        e.innerHTML="ON";
+                        watchLocation();
+                    }
                 }
-             </script>
-             <button class="gpsisoff" id="gpsToggle" style="position:absolute; top:700px; left:200px;" onclick="myFunction(this)" ><b>OFF</b>
-			<!--gps button ends-->
+
+                function myPlace()
+                {
+                    updatePlaces();
+                    $("#map").hide();
+                    $("#toshowbuttons").show();
+                }
+            </script>
+            <button class="gpsisoff" id="gpsToggle" onclick="myFunction(this)" ><b>OFF</b>
+                <!--gps button ends-->
+                <!--button for important places-->
+                <button id="myplace" class="myplace" onclick="myPlace()"><b>My Places</b></button>
+                <!--trying to show elements in a table-->
+
+
+
+                <script>
+                    function showPlaceList(favlist)
+                    {
+                        $("#placebuttons").empty();
+                        for(var i =0; i<favlist.length; i++){
+                            console.log(favlist[i].lat + favlist[i].lon);
+                            $("#placebuttons").append('<div id= "' + favlist[i].name.replace(' ', '-') + '" ><button type = "My Place" class = "btn btn-default" style="..." onclick= "showPlace('+favlist[i].lat+', '+favlist[i].lon+')" >' + favlist[i].name + '</button>' +
+                                    '<button class="btn btn-danger" onclick="removePlace(\'' + favlist[i].name + '\')">Remove</button><br/></div>');
+
+                        }
+                    }
+                </script>
+                <!--table ends-->
+                <!--My Place button ends-->
         </div>
     </div>
 

@@ -7,5 +7,4 @@ describe("Login", function() {
         $("#signin").trigger('click');
         expect(existingUser).toHaveBeenCalled();
     });
-
 });

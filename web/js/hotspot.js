@@ -234,7 +234,6 @@ var addLocation = function (nameIn, latIn, lonIn) {
 };
 
 var removePlace = function (place) {
-
     var areYouSure = confirm("This will delete the place forever. You sure?");
     removeMarker(place);
     if (areYouSure === true) {
@@ -242,8 +241,9 @@ var removePlace = function (place) {
             key: sessionkey,
             placeName: place
         }, function (data) {
-            $("#" + place.replace(' ', '-')).remove();
         });
+
+		$("#" + place.replace(' ', '-')).remove();
     }
 };
 
@@ -400,11 +400,10 @@ var placeMarker = function(name, location){
 };
 
 var removeMarker = function(name){
-      
-    markers[name].setMap(null);
-    delete markers[name];
-    
-
+    if (name in markers) {
+		markers[name].setMap(null);
+		delete markers[name];
+	}
 };
 
 
