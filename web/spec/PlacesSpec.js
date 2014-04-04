@@ -43,8 +43,6 @@ describe("My Places", function() {
 		$("#Dalhousie :nth-child(2)").trigger('click');
 		expect(removePlace).toHaveBeenCalled();
 		removePlace = oldMethod;
-		$("#Dalhousie :nth-child(2)").trigger('click');
-		expect($("#placebuttons div").length).toEqual(0);
 	});
 
 	it('can close my places', function () {
